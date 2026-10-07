@@ -1,0 +1,499 @@
+{
+  "company": {
+    "name": "Ruxin Consulting",
+    "tagline": "Building possibilities. Delivering results.",
+    "email": "hello@ruxinconsulting.com",
+    "phone": "+251 XXX XXX XXX",
+    "location": "Addis Ababa, Ethiopia",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com"
+      },
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com"
+      },
+      {
+        "label": "X",
+        "href": "https://x.com"
+      }
+    ]
+  },
+  "navLinks": [
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Services",
+      "href": "#services"
+    },
+    {
+      "label": "Clients",
+      "href": "#clients"
+    },
+    {
+      "label": "Team",
+      "href": "#team"
+    },
+    {
+      "label": "Careers",
+      "href": "#careers"
+    },
+    {
+      "label": "Insights",
+      "href": "#insights"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "hero": {
+    "eyebrow": "Consulting · Logistics · Recruitment · Finance · Legal",
+    "headline": [
+      "Building Possibilities.",
+      "Delivering Results."
+    ],
+    "body": "Ruxin Consulting connects strategy, expertise, and execution to help organizations navigate complexity, unlock opportunities, and create lasting impact.",
+    "primaryCta": {
+      "label": "Explore Our Services",
+      "href": "#services"
+    },
+    "secondaryCta": {
+      "label": "Talk to Ruxin",
+      "href": "#contact"
+    }
+  },
+  "about": {
+    "eyebrow": "About Ruxin",
+    "headline": [
+      "More than consultants.",
+      "We create connections."
+    ],
+    "body": "Ruxin Consulting brings together multidisciplinary expertise to help organizations make better decisions, solve complex challenges, and turn opportunities into measurable results.",
+    "stages": [
+      "Complexity",
+      "Clarity",
+      "Action",
+      "Results"
+    ],
+    "stats": [
+      {
+        "value": 10,
+        "suffix": "+",
+        "label": "Years of Experience"
+      },
+      {
+        "value": 50,
+        "suffix": "+",
+        "label": "Projects Delivered"
+      },
+      {
+        "value": 20,
+        "suffix": "+",
+        "label": "Industry Experts"
+      },
+      {
+        "value": 15,
+        "suffix": "+",
+        "label": "Markets Connected"
+      }
+    ]
+  },
+  "services": [
+    {
+      "id": "consulting",
+      "number": "01",
+      "name": "Consulting",
+      "concept": [
+        "Strategy",
+        "Decision",
+        "Growth"
+      ],
+      "title": "From challenge to clear direction.",
+      "description": "We help leadership teams diagnose what matters, design strategies grounded in evidence, and make confident decisions that compound into growth.",
+      "capabilities": [
+        "Business strategy",
+        "Market entry",
+        "Operational excellence",
+        "Transformation"
+      ]
+    },
+    {
+      "id": "logistics",
+      "number": "02",
+      "name": "Logistics",
+      "concept": [
+        "Origin",
+        "Route",
+        "Destination"
+      ],
+      "title": "Movement, engineered end to end.",
+      "description": "We design and manage supply chains that move goods across borders reliably — from sourcing and freight coordination to customs and last-mile delivery.",
+      "capabilities": [
+        "Freight coordination",
+        "Customs & clearance",
+        "Supply chain design",
+        "Warehousing"
+      ]
+    },
+    {
+      "id": "recruitment",
+      "number": "03",
+      "name": "Recruitment",
+      "concept": [
+        "Talent",
+        "Match",
+        "Opportunity"
+      ],
+      "title": "The right people, in the right roles.",
+      "description": "We connect organizations with leaders and specialists who fit both the role and the culture — through rigorous search and a deeply human process.",
+      "capabilities": [
+        "Executive search",
+        "Specialist hiring",
+        "Talent mapping",
+        "Workforce planning"
+      ]
+    },
+    {
+      "id": "finance",
+      "number": "04",
+      "name": "Finance",
+      "concept": [
+        "Data",
+        "Insight",
+        "Growth"
+      ],
+      "title": "Turning numbers into decisions.",
+      "description": "We transform financial data into clear insight — modelling, advisory, and reporting that helps organizations allocate capital and grow with discipline.",
+      "capabilities": [
+        "Financial advisory",
+        "Modelling & valuation",
+        "Reporting",
+        "Investment readiness"
+      ]
+    },
+    {
+      "id": "legal",
+      "number": "05",
+      "name": "Legal",
+      "concept": [
+        "Review",
+        "Protection",
+        "Confidence"
+      ],
+      "title": "Clarity that protects what you build.",
+      "description": "We bring structure to complex legal matters — contracts, compliance, and corporate affairs reviewed with precision so you can move forward with confidence.",
+      "capabilities": [
+        "Contract review",
+        "Corporate compliance",
+        "Regulatory advisory",
+        "Risk assessment"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "name": "Northwind Holdings",
+      "mark": "NORTHWIND"
+    },
+    {
+      "name": "Axiom Industries",
+      "mark": "AXIOM"
+    },
+    {
+      "name": "Meridian Group",
+      "mark": "Meridian"
+    },
+    {
+      "name": "Halcyon Partners",
+      "mark": "HALCYON"
+    },
+    {
+      "name": "Vertex Logistics",
+      "mark": "vertex"
+    },
+    {
+      "name": "Solace Energy",
+      "mark": "SOLACE"
+    },
+    {
+      "name": "Atlas Capital",
+      "mark": "Atlas"
+    },
+    {
+      "name": "Kestrel Health",
+      "mark": "KESTREL"
+    },
+    {
+      "name": "Orbit Telecom",
+      "mark": "orbit"
+    },
+    {
+      "name": "Lumen Foods",
+      "mark": "LUMEN"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Ruxin helped us turn a complex challenge into a clear, actionable strategy.",
+      "detail": "Their team connected market insight, financial modelling, and execution planning into one coherent roadmap. We moved faster — and with far more confidence.",
+      "name": "Selam Tesfaye",
+      "role": "Chief Executive Officer",
+      "company": "Northwind Holdings",
+      "mark": "NORTHWIND"
+    },
+    {
+      "quote": "They found leaders we could not have found on our own — and they fit from day one.",
+      "detail": "The search was rigorous, transparent, and remarkably human. Two years on, every placement is still with us and thriving.",
+      "name": "Daniel Okafor",
+      "role": "Head of People",
+      "company": "Axiom Industries",
+      "mark": "AXIOM"
+    },
+    {
+      "quote": "Our cross-border shipments went from unpredictable to precise.",
+      "detail": "Ruxin redesigned our routes and customs process end to end. Lead times dropped and our teams finally trust the schedule.",
+      "name": "Hanna Mekonnen",
+      "role": "Operations Director",
+      "company": "Vertex Logistics",
+      "mark": "vertex"
+    },
+    {
+      "quote": "Legal clarity at the speed our business actually moves.",
+      "detail": "Contracts that used to take weeks are reviewed in days, with risks explained in plain language. It changed how we negotiate.",
+      "name": "Marco Rinaldi",
+      "role": "General Counsel",
+      "company": "Atlas Capital",
+      "mark": "Atlas"
+    }
+  ],
+  "team": [
+    {
+      "name": "Yonas Alemu",
+      "role": "Managing Partner",
+      "bio": "Two decades advising leadership teams across East Africa and the Gulf on strategy, growth, and transformation.",
+      "image": "/team/team-1.png",
+      "linkedin": "https://www.linkedin.com"
+    },
+    {
+      "name": "Liya Haile",
+      "role": "Director, Finance",
+      "bio": "Former investment banker leading financial advisory, valuation, and investment readiness programmes.",
+      "image": "/team/team-2.png",
+      "linkedin": "https://www.linkedin.com"
+    },
+    {
+      "name": "Thomas Berg",
+      "role": "Director, Logistics",
+      "bio": "Supply chain architect with experience building cross-border freight networks for manufacturers and retailers.",
+      "image": "/team/team-3.png",
+      "linkedin": "https://www.linkedin.com"
+    },
+    {
+      "name": "Priya Raman",
+      "role": "Head of Legal Advisory",
+      "bio": "Corporate lawyer specialising in contracts, compliance, and regulatory strategy for growing organizations.",
+      "image": "/team/team-4.png",
+      "linkedin": "https://www.linkedin.com"
+    }
+  ],
+  "careers": {
+    "headline": "Build your future with us.",
+    "body": "We are looking for ambitious people who want to solve meaningful problems and create real impact.",
+    "benefits": [
+      "Competitive salary and performance bonus",
+      "Health coverage for you and your family",
+      "Learning budget and mentorship",
+      "Hybrid working and flexible hours"
+    ],
+    "jobs": [
+      {
+        "id": "senior-business-consultant",
+        "title": "Senior Business Consultant",
+        "department": "Consulting",
+        "location": "Addis Ababa",
+        "type": "Full-time",
+        "summary": "Lead client engagements from diagnosis to delivery across strategy and operations.",
+        "description": "You will own client relationships and lead multidisciplinary teams to solve strategic and operational challenges for organizations across the region.",
+        "responsibilities": [
+          "Lead engagements end to end, from scoping to delivery",
+          "Structure ambiguous problems and develop evidence-based recommendations",
+          "Coach junior consultants and contribute to firm knowledge",
+          "Build lasting relationships with senior client stakeholders"
+        ],
+        "requirements": [
+          "6+ years in consulting, strategy, or corporate development",
+          "Strong analytical and storytelling skills",
+          "Experience presenting to executive audiences",
+          "Fluency in English; Amharic is a plus"
+        ]
+      },
+      {
+        "id": "logistics-operations-manager",
+        "title": "Logistics Operations Manager",
+        "department": "Logistics",
+        "location": "Addis Ababa",
+        "type": "Full-time",
+        "summary": "Run day-to-day freight operations and continuously improve route performance.",
+        "description": "You will manage freight coordination, carrier relationships, and customs workflows to keep client supply chains moving reliably.",
+        "responsibilities": [
+          "Coordinate inbound and outbound shipments across modes",
+          "Manage carrier and customs broker relationships",
+          "Track KPIs and drive continuous improvement",
+          "Resolve exceptions quickly and transparently"
+        ],
+        "requirements": [
+          "5+ years in logistics or supply chain operations",
+          "Knowledge of import/export and customs procedures",
+          "Comfort with data and logistics software",
+          "Calm under pressure, strong communicator"
+        ]
+      },
+      {
+        "id": "recruitment-specialist",
+        "title": "Recruitment Specialist",
+        "department": "Recruitment",
+        "location": "Hybrid",
+        "type": "Full-time",
+        "summary": "Find, assess, and connect exceptional talent with our client organizations.",
+        "description": "You will run full-cycle searches for specialist and leadership roles, building trusted relationships with candidates and clients alike.",
+        "responsibilities": [
+          "Run full-cycle recruitment for client mandates",
+          "Map talent markets and build candidate pipelines",
+          "Conduct structured interviews and assessments",
+          "Advise clients on offers and onboarding"
+        ],
+        "requirements": [
+          "3+ years in recruitment or talent acquisition",
+          "Excellent judgement of people and potential",
+          "Strong networking and communication skills",
+          "Experience with executive search is a plus"
+        ]
+      },
+      {
+        "id": "financial-analyst",
+        "title": "Financial Analyst",
+        "department": "Finance",
+        "location": "Addis Ababa",
+        "type": "Full-time",
+        "summary": "Build models and analyses that inform major client financial decisions.",
+        "description": "You will support financial advisory engagements with modelling, valuation, and reporting work that turns data into decisions.",
+        "responsibilities": [
+          "Build and maintain financial models and valuations",
+          "Analyse performance data and prepare insights",
+          "Support due diligence and investment readiness",
+          "Prepare clear, client-ready reports"
+        ],
+        "requirements": [
+          "2+ years in finance, audit, or banking",
+          "Advanced Excel and modelling skills",
+          "Degree in finance, economics, or similar",
+          "CFA/ACCA progress is a plus"
+        ]
+      },
+      {
+        "id": "legal-consultant",
+        "title": "Legal Consultant",
+        "department": "Legal",
+        "location": "Addis Ababa",
+        "type": "Contract",
+        "summary": "Review contracts and advise clients on compliance and corporate matters.",
+        "description": "You will review, draft, and negotiate commercial agreements and advise clients on corporate and regulatory compliance.",
+        "responsibilities": [
+          "Review and draft commercial contracts",
+          "Advise on corporate governance and compliance",
+          "Identify legal risks and recommend mitigations",
+          "Collaborate with consulting and finance teams"
+        ],
+        "requirements": [
+          "LLB and licensed to practise",
+          "4+ years of commercial or corporate law experience",
+          "Precise, clear written communication",
+          "Business-minded approach to legal advice"
+        ]
+      }
+    ]
+  },
+  "insightCategories": [
+    "All",
+    "Business",
+    "Logistics",
+    "Finance",
+    "Recruitment",
+    "Legal",
+    "Ruxin News"
+  ],
+  "insights": [
+    {
+      "id": "connected-strategy",
+      "category": "Business",
+      "date": "Sep 18, 2026",
+      "title": "The connected organization: why strategy fails in silos",
+      "description": "The most resilient companies treat strategy, finance, people, and operations as one system. Here is how to start connecting yours.",
+      "image": "/insights/insight-1.png",
+      "readTime": "8 min read"
+    },
+    {
+      "id": "regional-trade-corridors",
+      "category": "Logistics",
+      "date": "Aug 30, 2026",
+      "title": "New trade corridors reshaping East African supply chains",
+      "description": "What expanding regional routes mean for importers, exporters, and manufacturers.",
+      "image": "/insights/insight-2.png",
+      "readTime": "6 min read"
+    },
+    {
+      "id": "investment-readiness",
+      "category": "Finance",
+      "date": "Aug 12, 2026",
+      "title": "Investment readiness: five questions every investor will ask",
+      "description": "Preparing the numbers, the narrative, and the governance before you raise.",
+      "image": "/insights/insight-3.png",
+      "readTime": "5 min read"
+    },
+    {
+      "id": "hiring-leaders",
+      "category": "Recruitment",
+      "date": "Jul 27, 2026",
+      "title": "Hiring for the next stage, not the last one",
+      "description": "Why the leaders who built your company may not be the ones who scale it.",
+      "image": "/insights/insight-4.png",
+      "readTime": "4 min read"
+    },
+    {
+      "id": "contract-risk",
+      "category": "Legal",
+      "date": "Jul 09, 2026",
+      "title": "Five contract clauses that quietly create risk",
+      "description": "A practical guide to the terms most often overlooked in commercial agreements.",
+      "image": "/insights/insight-3.png",
+      "readTime": "5 min read"
+    },
+    {
+      "id": "ruxin-expansion",
+      "category": "Ruxin News",
+      "date": "Jun 20, 2026",
+      "title": "Ruxin expands its regional advisory team",
+      "description": "New specialists join our finance and legal practices to support growing demand.",
+      "image": "/insights/insight-1.png",
+      "readTime": "2 min read"
+    }
+  ],
+  "assistant": {
+    "welcome": "Hello, I'm Ruxin Assistant. How can I help you today?",
+    "suggestions": [
+      "Tell me about your services",
+      "I need consulting support",
+      "I'm interested in logistics",
+      "I'm looking for a job",
+      "How can I contact Ruxin?"
+    ]
+  }
+}
