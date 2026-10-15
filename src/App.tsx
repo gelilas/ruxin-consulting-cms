@@ -14,6 +14,7 @@ import {
   TeamEditor,
   TestimonialsEditor,
 } from './sections'
+import { useToast } from './toast'
 import { sections, type CmsUser, type SectionId, type SiteContent } from './types'
 import { Field } from './ui'
 
@@ -41,6 +42,7 @@ export function App() {
 }
 
 function Login({ onSuccess }: { onSuccess: (user: CmsUser) => void }) {
+  const toast = useToast()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -52,9 +54,12 @@ function Login({ onSuccess }: { onSuccess: (user: CmsUser) => void }) {
     setError('')
     try {
       const result = await api.login(email, password)
+      toast.success(`Welcome back, ${result.user.name}.`)
       onSuccess(result.user)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not sign in.')
+      const message = err instanceof Error ? err.message : 'Could not sign in.'
+      setError(message)
+      toast.error(message)
     } finally {
       setPending(false)
     }
@@ -109,10 +114,9 @@ function Editor({
   onLogout: () => void
   onAuthLost: () => void
 }) {
+  const toast = useToast()
   const [section, setSection] = useState<NavId>('company')
   const [content, setContent] = useState<SiteContent | null>(null)
-  const [saved, setSaved] = useState('')
-  const [error, setError] = useState('')
   const [pending, setPending] = useState(false)
   const [dirty, setDirty] = useState(false)
 
@@ -121,7 +125,7 @@ function Editor({
 
   const handleApiError = (err: unknown, fallback: string) => {
     const message = err instanceof Error ? err.message : fallback
-    setError(message)
+    toast.error(message)
     if (message.toLowerCase().includes('signed out') || message.toLowerCase().includes('sign in')) {
       onAuthLost()
     }
@@ -129,23 +133,24 @@ function Editor({
 
   useEffect(() => {
     if (isUsers) return
-    api.content().then(setContent).catch((err: Error) => setError(err.message))
-  }, [isUsers])
+    api
+      .content()
+      .then(setContent)
+      .catch((err: Error) => toast.error(err.message || 'Could not load content.'))
+  }, [isUsers, toast])
 
   const update = (next: SiteContent) => {
     setContent(next)
     setDirty(true)
-    setSaved('')
   }
 
   const save = async () => {
     if (!content) return
     setPending(true)
-    setError('')
     try {
       await api.save(content)
       setDirty(false)
-      setSaved('Saved. Refresh the website to see it.')
+      toast.success('Content saved. Refresh the website to see it.')
     } catch (err) {
       handleApiError(err, 'Could not save.')
     } finally {
@@ -155,6 +160,7 @@ function Editor({
 
   const logout = async () => {
     await api.logout().catch(() => undefined)
+    toast.info('Signed out.')
     onLogout()
   }
 
@@ -214,8 +220,6 @@ function Editor({
             ) : null}
           </div>
         </header>
-        {error ? <p className="mb-4 text-sm text-ruxin">{error}</p> : null}
-        {saved && !isUsers ? <p className="mb-4 text-sm text-neutral-500">{saved}</p> : null}
         {isUsers ? (
           <UsersAdmin currentUser={user} />
         ) : !content ? (
@@ -229,9 +233,8 @@ function Editor({
 }
 
 function UsersAdmin({ currentUser }: { currentUser: CmsUser }) {
+  const toast = useToast()
   const [users, setUsers] = useState<(CmsUser & { createdAt: string; updatedAt: string })[]>([])
-  const [error, setError] = useState('')
-  const [message, setMessage] = useState('')
   const [pending, setPending] = useState(false)
   const [form, setForm] = useState({
     email: '',
@@ -244,7 +247,7 @@ function UsersAdmin({ currentUser }: { currentUser: CmsUser }) {
     api
       .users()
       .then((result) => setUsers(result.users))
-      .catch((err: Error) => setError(err.message))
+      .catch((err: Error) => toast.error(err.message || 'Could not load users.'))
 
   useEffect(() => {
     void load()
@@ -253,15 +256,13 @@ function UsersAdmin({ currentUser }: { currentUser: CmsUser }) {
   const create = async (event: FormEvent) => {
     event.preventDefault()
     setPending(true)
-    setError('')
-    setMessage('')
     try {
       await api.createUser(form)
       setForm({ email: '', name: '', password: '', role: 'EDITOR' })
-      setMessage('User created.')
+      toast.success('User created.')
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not create user.')
+      toast.error(err instanceof Error ? err.message : 'Could not create user.')
     } finally {
       setPending(false)
     }
@@ -269,22 +270,17 @@ function UsersAdmin({ currentUser }: { currentUser: CmsUser }) {
 
   const remove = async (id: string) => {
     if (!confirm('Delete this user?')) return
-    setError('')
-    setMessage('')
     try {
       await api.deleteUser(id)
-      setMessage('User deleted.')
+      toast.success('User deleted.')
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not delete user.')
+      toast.error(err instanceof Error ? err.message : 'Could not delete user.')
     }
   }
 
   return (
     <div className="space-y-8">
-      {error ? <p className="text-sm text-ruxin">{error}</p> : null}
-      {message ? <p className="text-sm text-neutral-500">{message}</p> : null}
-
       <form onSubmit={create} className="space-y-4 rounded-2xl border border-ink/10 bg-white p-5">
         <h2 className="text-sm font-semibold">Create user</h2>
         <Field label="Name" value={form.name} onChange={(name) => setForm((prev) => ({ ...prev, name }))} />
