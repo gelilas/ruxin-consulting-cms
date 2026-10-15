@@ -4,22 +4,40 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:api": "tsx watch server/index.ts",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.8",
+    "@hono/node-server": "^2.1.4",
+    "@hono/swagger-ui": "^0.6.1",
+    "@prisma/client": "5.22.0",
+    "bcryptjs": "^3.0.3",
+    "hono": "^4.13.13",
     "lucide-react": "^1.16.0",
     "react": "^19",
-    "react-dom": "^19"
+    "react-dom": "^19",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.1.0",
+    "dotenv": "^18.0.6",
+    "prisma": "5.22.0",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "5.7.3",
     "vite": "^7.1.0"
   }

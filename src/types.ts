@@ -1,5 +1,14 @@
 export type Link = { label: string; href: string }
 
+export type CmsRole = 'ADMIN' | 'EDITOR'
+
+export type CmsUser = {
+  id: string
+  email: string
+  name: string
+  role: CmsRole
+}
+
 export type SiteContent = {
   company: {
     name: string

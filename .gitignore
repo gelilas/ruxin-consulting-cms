@@ -2,5 +2,6 @@ node_modules
 dist
 .env
 .env.*
+!.env.example
 data/.secret
 .DS_Store

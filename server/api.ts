@@ -1,3 +1,4 @@
+/** @deprecated Replaced by `server/index.ts` (Hono + Prisma). Kept for reference only. */
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto'
 import fs from 'node:fs'
 import type { IncomingMessage, ServerResponse } from 'node:http'
