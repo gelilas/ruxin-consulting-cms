@@ -1,5 +1,5 @@
 import type { SiteContent } from './types'
-import { AddButton, Card, Field, Lines, slug } from './ui'
+import { AddButton, Card, Field, ImageField, Lines, slug } from './ui'
 
 function move<T>(items: T[], index: number, direction: -1 | 1) {
   const next = index + direction
@@ -22,6 +22,7 @@ export function CompanyEditor({ content, onChange }: { content: SiteContent; onC
         <Field label="Phone" value={company.phone} onChange={(phone) => set({ phone })} />
       </div>
       <Field label="Location" value={company.location} onChange={(location) => set({ location })} />
+      <Field label="Website" value={company.website} onChange={(website) => set({ website })} hint="Shown on the contact section. Include https://" />
       <div className="grid gap-3">
         {company.socials.map((social, index) => (
           <Card
@@ -75,6 +76,7 @@ export function HeroEditor({ content, onChange }: { content: SiteContent; onChan
       <Field label="Eyebrow" value={hero.eyebrow} onChange={(eyebrow) => set({ eyebrow })} />
       <Lines label="Headline" value={hero.headline} onChange={(headline) => set({ headline })} hint="Each line of the headline." />
       <Field label="Body" value={hero.body} onChange={(body) => set({ body })} multiline />
+      <ImageField label="Image" value={hero.image} onChange={(image) => set({ image })} />
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Primary button" value={hero.primaryCta.label} onChange={(label) => set({ primaryCta: { ...hero.primaryCta, label } })} />
         <Field label="Primary link" value={hero.primaryCta.href} onChange={(href) => set({ primaryCta: { ...hero.primaryCta, href } })} />
@@ -93,7 +95,32 @@ export function AboutEditor({ content, onChange }: { content: SiteContent; onCha
       <Field label="Eyebrow" value={about.eyebrow} onChange={(eyebrow) => set({ eyebrow })} />
       <Lines label="Headline" value={about.headline} onChange={(headline) => set({ headline })} />
       <Field label="Body" value={about.body} onChange={(body) => set({ body })} multiline />
-      <Lines label="Stages" value={about.stages} onChange={(stages) => set({ stages })} />
+      <Lines label="Paragraphs" value={about.paragraphs} onChange={(paragraphs) => set({ paragraphs })} hint="Longer copy under the intro." />
+      <Lines label="Stages" value={about.stages} onChange={(stages) => set({ stages })} hint="Shown as Establish → Operate → Grow." />
+      <div className="grid gap-4 md:grid-cols-3">
+        <ImageField label="About image" value={about.image} onChange={(image) => set({ image })} />
+        <ImageField label="Vision image" value={about.visionImage} onChange={(visionImage) => set({ visionImage })} />
+        <ImageField label="Values image" value={about.valuesImage} onChange={(valuesImage) => set({ valuesImage })} />
+      </div>
+      <Field label="Vision title" value={about.vision.title} onChange={(title) => set({ vision: { ...about.vision, title } })} />
+      <Field label="Vision" value={about.vision.body} onChange={(body) => set({ vision: { ...about.vision, body } })} multiline />
+      <Field label="Mission title" value={about.mission.title} onChange={(title) => set({ mission: { ...about.mission, title } })} />
+      <Field label="Mission" value={about.mission.body} onChange={(body) => set({ mission: { ...about.mission, body } })} multiline />
+      <div className="grid gap-3">
+        {about.values.map((value, index) => (
+          <Card
+            key={index}
+            title={value.title || 'Value'}
+            onRemove={() => set({ values: about.values.filter((_, i) => i !== index) })}
+            onUp={() => set({ values: move(about.values, index, -1) })}
+            onDown={() => set({ values: move(about.values, index, 1) })}
+          >
+            <Field label="Title" value={value.title} onChange={(title) => set({ values: about.values.map((item, i) => (i === index ? { ...item, title } : item)) })} />
+            <Field label="Body" value={value.body} onChange={(body) => set({ values: about.values.map((item, i) => (i === index ? { ...item, body } : item)) })} multiline />
+          </Card>
+        ))}
+        <AddButton label="Add value" onClick={() => set({ values: [...about.values, { title: 'New value', body: '' }] })} />
+      </div>
       <div className="grid gap-3">
         {about.stats.map((stat, index) => (
           <Card
@@ -136,6 +163,7 @@ export function ServicesEditor({ content, onChange }: { content: SiteContent; on
           <Field label="Description" value={service.description} onChange={(description) => set(services.map((item, i) => (i === index ? { ...item, description } : item)))} multiline />
           <Lines label="Concept" value={service.concept} onChange={(concept) => set(services.map((item, i) => (i === index ? { ...item, concept } : item)))} />
           <Lines label="Capabilities" value={service.capabilities} onChange={(capabilities) => set(services.map((item, i) => (i === index ? { ...item, capabilities } : item)))} />
+          <ImageField label="Image" value={service.image} onChange={(image) => set(services.map((item, i) => (i === index ? { ...item, image } : item)))} />
         </Card>
       ))}
       <AddButton
@@ -151,6 +179,7 @@ export function ServicesEditor({ content, onChange }: { content: SiteContent; on
               title: 'New service title.',
               description: '',
               capabilities: [],
+              image: '/profile/vision.jpg',
             },
           ])
         }
@@ -170,7 +199,7 @@ export function ClientsEditor({ content, onChange }: { content: SiteContent; onC
             <Field label="Name" value={client.name} onChange={(name) => set(clients.map((item, i) => (i === index ? { ...item, name } : item)))} />
             <Field label="Mark" value={client.mark} onChange={(mark) => set(clients.map((item, i) => (i === index ? { ...item, mark } : item)))} />
           </div>
-          <Field label="Logo path" value={client.logo ?? ''} onChange={(logo) => set(clients.map((item, i) => (i === index ? { ...item, logo: logo || undefined } : item)))} hint="Optional. Example: /clients/acme.svg in the website public folder." />
+          <ImageField label="Logo" value={client.logo ?? ''} onChange={(logo) => set(clients.map((item, i) => (i === index ? { ...item, logo: logo || undefined } : item)))} />
         </Card>
       ))}
       <AddButton label="Add client" onClick={() => set([...clients, { name: 'New client', mark: 'CLIENT' }])} />
@@ -193,9 +222,37 @@ export function TestimonialsEditor({ content, onChange }: { content: SiteContent
             <Field label="Company" value={item.company} onChange={(company) => set(items.map((entry, i) => (i === index ? { ...entry, company } : entry)))} />
             <Field label="Mark" value={item.mark} onChange={(mark) => set(items.map((entry, i) => (i === index ? { ...entry, mark } : entry)))} />
           </div>
+          <ImageField label="Logo" value={item.logo} onChange={(logo) => set(items.map((entry, i) => (i === index ? { ...entry, logo } : entry)))} />
         </Card>
       ))}
-      <AddButton label="Add testimonial" onClick={() => set([...items, { quote: '', detail: '', name: 'Name', role: 'Role', company: 'Company', mark: 'MARK' }])} />
+      <AddButton label="Add testimonial" onClick={() => set([...items, { quote: '', detail: '', name: 'Name', role: 'Client', company: 'Company', mark: 'MARK', logo: '' }])} />
+    </div>
+  )
+}
+
+export function WhyEditor({ content, onChange }: { content: SiteContent; onChange: (content: SiteContent) => void }) {
+  const why = content.whyChoose
+  const set = (patch: Partial<SiteContent['whyChoose']>) => onChange({ ...content, whyChoose: { ...why, ...patch } })
+  return (
+    <div className="grid gap-4">
+      <Field label="Eyebrow" value={why.eyebrow} onChange={(eyebrow) => set({ eyebrow })} />
+      <Lines label="Headline" value={why.headline} onChange={(headline) => set({ headline })} />
+      <Field label="Body" value={why.body} onChange={(body) => set({ body })} multiline />
+      <ImageField label="Image" value={why.image} onChange={(image) => set({ image })} />
+      {why.items.map((item, index) => (
+        <Card
+          key={index}
+          title={item.title || 'Reason'}
+          onRemove={() => set({ items: why.items.filter((_, i) => i !== index) })}
+          onUp={() => set({ items: move(why.items, index, -1) })}
+          onDown={() => set({ items: move(why.items, index, 1) })}
+        >
+          <Field label="Title" value={item.title} onChange={(title) => set({ items: why.items.map((entry, i) => (i === index ? { ...entry, title } : entry)) })} />
+          <Field label="Body" value={item.body} onChange={(body) => set({ items: why.items.map((entry, i) => (i === index ? { ...entry, body } : entry)) })} multiline />
+          <ImageField label="Image" value={item.image} onChange={(image) => set({ items: why.items.map((entry, i) => (i === index ? { ...entry, image } : entry)) })} />
+        </Card>
+      ))}
+      <AddButton label="Add reason" onClick={() => set({ items: [...why.items, { title: 'New reason', body: '', image: '/profile/why-local.jpg' }] })} />
     </div>
   )
 }
@@ -213,7 +270,7 @@ export function TeamEditor({ content, onChange }: { content: SiteContent; onChan
           </div>
           <Field label="Bio" value={person.bio} onChange={(bio) => set(team.map((item, i) => (i === index ? { ...item, bio } : item)))} multiline />
           <div className="grid gap-4 md:grid-cols-2">
-            <Field label="Photo" value={person.image} onChange={(image) => set(team.map((item, i) => (i === index ? { ...item, image } : item)))} hint="Path in the website public folder, such as /team/team-1.png" />
+            <ImageField label="Photo" value={person.image} onChange={(image) => set(team.map((item, i) => (i === index ? { ...item, image } : item)))} />
             <Field label="LinkedIn" value={person.linkedin} onChange={(linkedin) => set(team.map((item, i) => (i === index ? { ...item, linkedin } : item)))} />
           </div>
         </Card>
@@ -293,7 +350,7 @@ export function InsightsEditor({ content, onChange }: { content: SiteContent; on
             <Field label="Read time" value={item.readTime} onChange={(readTime) => setInsights(insights.map((entry, i) => (i === index ? { ...entry, readTime } : entry)))} />
           </div>
           <Field label="Description" value={item.description} onChange={(description) => setInsights(insights.map((entry, i) => (i === index ? { ...entry, description } : entry)))} multiline />
-          <Field label="Image" value={item.image} onChange={(image) => setInsights(insights.map((entry, i) => (i === index ? { ...entry, image } : entry)))} hint="Path in the website public folder, such as /insights/insight-1.png" />
+          <ImageField label="Image" value={item.image} onChange={(image) => setInsights(insights.map((entry, i) => (i === index ? { ...entry, image } : entry)))} />
         </Card>
       ))}
       <AddButton

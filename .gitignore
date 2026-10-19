@@ -4,4 +4,5 @@ dist
 .env.*
 !.env.example
 data/.secret
+data/uploads
 .DS_Store

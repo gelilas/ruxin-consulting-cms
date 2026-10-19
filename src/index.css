@@ -1,11 +1,17 @@
 @import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
 @import 'tailwindcss';
 
 @theme {
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
   --color-ruxin: #b0161e;
-  --color-ink: #090909;
-  --color-paper: #f4f4f2;
+  --color-ruxin-bright: #8b1116;
+  --color-ink: #1a1214;
+  --color-paper: #f7f4f2;
+  --color-cream: #f3eeeb;
+  --color-stone: #efe6e3;
+  --color-mute: #8a7b78;
 }
 
 body {
@@ -13,12 +19,24 @@ body {
   font-family: var(--font-sans);
   background: var(--color-paper);
   color: var(--color-ink);
+  font-feature-settings: 'ss01', 'cv11';
 }
 
 button,
 input,
-textarea {
+textarea,
+select {
   font: inherit;
+}
+
+::selection {
+  background: var(--color-ruxin);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ruxin);
+  outline-offset: 3px;
 }
 
 @keyframes toast-in {
@@ -34,4 +52,11 @@ textarea {
 
 @utility animate-toast-in {
   animation: toast-in 220ms ease-out;
+}
+
+@utility grid-fine-dark {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-ink) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-ink) 6%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
 }

@@ -5,6 +5,11 @@ const linkSchema = z.object({
   href: z.string(),
 })
 
+const titledBodySchema = z.object({
+  title: z.string(),
+  body: z.string(),
+})
+
 export const siteContentSchema = z.object({
   company: z.object({
     name: z.string(),
@@ -12,6 +17,7 @@ export const siteContentSchema = z.object({
     email: z.string(),
     phone: z.string(),
     location: z.string(),
+    website: z.string(),
     socials: z.array(linkSchema),
   }),
   navLinks: z.array(linkSchema),
@@ -19,6 +25,7 @@ export const siteContentSchema = z.object({
     eyebrow: z.string(),
     headline: z.array(z.string()),
     body: z.string(),
+    image: z.string(),
     primaryCta: linkSchema,
     secondaryCta: linkSchema,
   }),
@@ -26,6 +33,13 @@ export const siteContentSchema = z.object({
     eyebrow: z.string(),
     headline: z.array(z.string()),
     body: z.string(),
+    paragraphs: z.array(z.string()),
+    image: z.string(),
+    visionImage: z.string(),
+    vision: titledBodySchema,
+    mission: titledBodySchema,
+    valuesImage: z.string(),
+    values: z.array(titledBodySchema),
     stages: z.array(z.string()),
     stats: z.array(
       z.object({
@@ -44,6 +58,7 @@ export const siteContentSchema = z.object({
       title: z.string(),
       description: z.string(),
       capabilities: z.array(z.string()),
+      image: z.string(),
     }),
   ),
   clients: z.array(
@@ -61,8 +76,22 @@ export const siteContentSchema = z.object({
       role: z.string(),
       company: z.string(),
       mark: z.string(),
+      logo: z.string(),
     }),
   ),
+  whyChoose: z.object({
+    eyebrow: z.string(),
+    headline: z.array(z.string()),
+    body: z.string(),
+    image: z.string(),
+    items: z.array(
+      z.object({
+        title: z.string(),
+        body: z.string(),
+        image: z.string(),
+      }),
+    ),
+  }),
   team: z.array(
     z.object({
       name: z.string(),
@@ -116,6 +145,7 @@ export const CONTENT_SECTIONS = [
   'services',
   'clients',
   'testimonials',
+  'whyChoose',
   'team',
   'careers',
   'insightCategories',

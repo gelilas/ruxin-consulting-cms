@@ -90,6 +90,20 @@ export const api = {
     }),
   save: (content: SiteContent) =>
     request('/api/content', { method: 'PUT', body: JSON.stringify(content) }),
+  upload: async (file: File) => {
+    const body = new FormData()
+    body.append('file', file)
+    const headers: Record<string, string> = {}
+    const token = getToken()
+    if (token) headers.Authorization = `Bearer ${token}`
+    const response = await fetch('/api/uploads', { method: 'POST', headers, body })
+    const data = (await response.json().catch(() => ({}))) as { url?: string; error?: string }
+    if (!response.ok || !data.url) {
+      clearSessionOnUnauthorized(response.status, '/api/uploads')
+      throw new ApiError(data.error || 'Could not upload image.', response.status)
+    }
+    return data.url
+  },
   users: () => request<UsersResponse>('/api/users'),
   createUser: (body: { email: string; name: string; password: string; role?: 'ADMIN' | 'EDITOR' }) =>
     request<{ user: CmsUser }>('/api/users', { method: 'POST', body: JSON.stringify(body) }),

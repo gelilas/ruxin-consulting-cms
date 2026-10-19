@@ -6,6 +6,7 @@ import {
   AssistantEditor,
   CareersEditor,
   ClientsEditor,
+  WhyEditor,
   CompanyEditor,
   HeroEditor,
   InsightsEditor,
@@ -16,7 +17,7 @@ import {
 } from './sections'
 import { useToast } from './toast'
 import { sections, type CmsUser, type SectionId, type SiteContent } from './types'
-import { Field } from './ui'
+import { Field, Logo } from './ui'
 
 const websiteUrl = 'http://localhost:5173'
 
@@ -35,7 +36,11 @@ export function App() {
   const handleAuthLost = () => setUser(null)
 
   if (user === undefined) {
-    return <p className="grid min-h-svh place-items-center text-sm text-neutral-500">Loading…</p>
+    return (
+      <p className="grid min-h-svh place-items-center bg-paper font-mono text-[11px] uppercase tracking-[0.22em] text-mute">
+        Loading
+      </p>
+    )
   }
   if (!user) return <Login onSuccess={setUser} />
   return <Editor user={user} onLogout={handleAuthLost} onAuthLost={handleAuthLost} />
@@ -66,12 +71,14 @@ function Login({ onSuccess }: { onSuccess: (user: CmsUser) => void }) {
   }
 
   return (
-    <main className="grid min-h-svh place-items-center px-5">
-      <form onSubmit={submit} className="w-full max-w-sm rounded-3xl border border-ink/10 bg-white p-8 shadow-sm">
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ruxin">Ruxin</p>
-        <h1 className="mt-3 text-2xl font-semibold tracking-tight">Content admin</h1>
-        <p className="mt-2 text-sm text-neutral-500">Sign in to edit the website content.</p>
-        <label className="mt-6 block text-sm font-medium">
+    <main className="relative grid min-h-svh place-items-center bg-paper px-5 py-12">
+      <div className="pointer-events-none absolute inset-0 grid-fine-dark opacity-70" aria-hidden="true" />
+      <form onSubmit={submit} className="relative w-full max-w-md border border-ink/10 bg-cream px-8 py-10">
+        <Logo />
+        <p className="mt-10 font-mono text-[10.5px] uppercase tracking-[0.22em] text-ruxin">Content studio</p>
+        <h1 className="mt-3 text-3xl font-semibold tracking-[-0.03em]">Sign in</h1>
+        <p className="mt-2 text-sm leading-relaxed text-ink/60">Edit the website content from here.</p>
+        <label className="mt-8 block text-sm font-medium">
           Email
           <input
             type="email"
@@ -79,7 +86,7 @@ function Login({ onSuccess }: { onSuccess: (user: CmsUser) => void }) {
             autoComplete="username"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="mt-1.5 w-full rounded-lg border border-ink/15 px-3 py-2 outline-none focus:border-ruxin"
+            className="mt-1.5 w-full rounded-md border border-ink/10 bg-white px-3 py-2.5 outline-none transition-colors focus:border-ruxin"
           />
         </label>
         <label className="mt-4 block text-sm font-medium">
@@ -89,14 +96,14 @@ function Login({ onSuccess }: { onSuccess: (user: CmsUser) => void }) {
             autoComplete="current-password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            className="mt-1.5 w-full rounded-lg border border-ink/15 px-3 py-2 outline-none focus:border-ruxin"
+            className="mt-1.5 w-full rounded-md border border-ink/10 bg-white px-3 py-2.5 outline-none transition-colors focus:border-ruxin"
           />
         </label>
         {error ? <p className="mt-3 text-sm text-ruxin">{error}</p> : null}
         <button
           type="submit"
           disabled={pending}
-          className="mt-6 h-11 w-full rounded-full bg-ruxin text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="mt-8 inline-flex h-12 w-full items-center justify-center rounded-full bg-ruxin text-sm font-medium text-white transition-colors hover:bg-ruxin-bright disabled:opacity-60"
         >
           {pending ? 'Signing in…' : 'Sign in'}
         </button>
@@ -166,68 +173,87 @@ function Editor({
 
   const title = isUsers ? 'Users' : sections.find(([id]) => id === section)?.[1]
 
+  const navClass = (active: boolean) =>
+    `flex items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm whitespace-nowrap transition-colors md:w-full ${
+      active ? 'bg-white text-ink' : 'text-ink/60 hover:bg-white/70 hover:text-ink'
+    }`
+
   return (
-    <div className="min-h-svh md:grid md:grid-cols-[240px_1fr]">
-      <aside className="border-b border-ink/10 bg-white md:sticky md:top-0 md:h-svh md:border-b-0 md:border-r">
-        <div className="px-5 py-6">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ruxin">Ruxin CMS</p>
-          <p className="mt-1 text-sm text-neutral-500">{user.name}</p>
-        </div>
-        <nav className="flex gap-1 overflow-x-auto px-3 pb-4 md:block md:px-3">
-          {sections.map(([id, label]) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => setSection(id)}
-              className={`rounded-full px-3 py-2 text-left text-sm whitespace-nowrap md:block md:w-full md:rounded-lg ${section === id ? 'bg-ink text-white' : 'text-neutral-600 hover:bg-paper'}`}
-            >
-              {label}
-            </button>
-          ))}
-          {isAdmin ? (
-            <button
-              type="button"
-              onClick={() => setSection('users')}
-              className={`rounded-full px-3 py-2 text-left text-sm whitespace-nowrap md:mt-3 md:block md:w-full md:rounded-lg ${section === 'users' ? 'bg-ink text-white' : 'text-neutral-600 hover:bg-paper'}`}
-            >
-              Users
-            </button>
-          ) : null}
-        </nav>
-      </aside>
-      <section className="mx-auto w-full max-w-3xl px-5 py-8 md:px-10">
-        <header className="mb-8 flex flex-wrap items-center justify-between gap-3">
-          <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
+    <div className="min-h-svh bg-paper">
+      <header className="bg-ruxin text-white">
+        <div className="flex h-16 items-center justify-between gap-3 px-4 md:h-20 md:px-8">
+          <div className="flex items-center gap-4">
+            <Logo light mark="white" />
+            <span className="hidden font-mono text-[10px] uppercase tracking-[0.32em] text-white/65 sm:inline">CMS</span>
+          </div>
           <div className="flex items-center gap-2">
-            <a href={websiteUrl} target="_blank" rel="noreferrer" className="inline-flex h-10 items-center gap-2 rounded-full border border-ink/15 px-4 text-sm">
+            <span className="mr-2 hidden text-[13px] text-white/75 md:inline">{user.name}</span>
+            <a
+              href={websiteUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-10 items-center gap-2 rounded-full border border-white/30 px-4 text-[13px] transition-colors hover:bg-white/10"
+            >
               View site
               <ExternalLink className="size-3.5" />
             </a>
-            <button type="button" onClick={logout} className="inline-flex h-10 items-center gap-2 rounded-full border border-ink/15 px-4 text-sm">
+            <button
+              type="button"
+              onClick={logout}
+              className="inline-flex h-10 items-center gap-2 rounded-full border border-white/30 px-4 text-[13px] transition-colors hover:bg-white/10"
+            >
               <LogOut className="size-3.5" />
-              Sign out
+              <span className="hidden sm:inline">Sign out</span>
             </button>
             {!isUsers ? (
               <button
                 type="button"
                 onClick={save}
                 disabled={!dirty || pending || !content}
-                className="inline-flex h-10 items-center gap-2 rounded-full bg-ruxin px-4 text-sm font-medium text-white disabled:opacity-40"
+                className="inline-flex h-10 items-center gap-2 rounded-full bg-cream px-4 text-[13px] font-medium text-ink transition-colors hover:bg-white disabled:opacity-40"
               >
                 <Save className="size-3.5" />
                 {pending ? 'Saving…' : 'Save'}
               </button>
             ) : null}
           </div>
+        </div>
+      </header>
+      <div className="md:grid md:grid-cols-[240px_1fr]">
+      <aside className="border-b border-ink/10 bg-cream md:sticky md:top-0 md:h-[calc(100svh-5rem)] md:overflow-y-auto md:border-b-0 md:border-r">
+        <nav className="flex gap-1 overflow-x-auto px-3 py-3 md:block md:px-3 md:py-5">
+          <p className="mb-2 hidden px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-mute md:block">Pages</p>
+          {sections.map(([id, label]) => (
+            <button key={id} type="button" onClick={() => setSection(id)} className={navClass(section === id)}>
+              <span className={`size-1.5 shrink-0 rounded-full ${section === id ? 'bg-ruxin' : 'bg-transparent'}`} aria-hidden="true" />
+              {label}
+            </button>
+          ))}
+          {isAdmin ? (
+            <>
+              <p className="mt-5 mb-2 hidden px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-mute md:block">Admin</p>
+              <button type="button" onClick={() => setSection('users')} className={`${navClass(section === 'users')} md:mt-0`}>
+                <span className={`size-1.5 shrink-0 rounded-full ${section === 'users' ? 'bg-ruxin' : 'bg-transparent'}`} aria-hidden="true" />
+                Users
+              </button>
+            </>
+          ) : null}
+        </nav>
+      </aside>
+      <section className="mx-auto w-full max-w-3xl px-5 py-8 md:px-10">
+        <header className="mb-8">
+          <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-ruxin">Editing</p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-[-0.03em]">{title}</h1>
         </header>
         {isUsers ? (
           <UsersAdmin currentUser={user} />
         ) : !content ? (
-          <p className="text-sm text-neutral-500">Loading content…</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute">Loading content</p>
         ) : (
           <EditorBody section={section as SectionId} content={content} onChange={update} />
         )}
       </section>
+      </div>
     </div>
   )
 }
@@ -281,7 +307,7 @@ function UsersAdmin({ currentUser }: { currentUser: CmsUser }) {
 
   return (
     <div className="space-y-8">
-      <form onSubmit={create} className="space-y-4 rounded-2xl border border-ink/10 bg-white p-5">
+      <form onSubmit={create} className="space-y-4 border border-ink/10 bg-cream p-5">
         <h2 className="text-sm font-semibold">Create user</h2>
         <Field label="Name" value={form.name} onChange={(name) => setForm((prev) => ({ ...prev, name }))} />
         <Field label="Email" value={form.email} onChange={(email) => setForm((prev) => ({ ...prev, email }))} />
@@ -294,7 +320,7 @@ function UsersAdmin({ currentUser }: { currentUser: CmsUser }) {
         <label className="block text-sm">
           <span className="font-medium">Role</span>
           <select
-            className="mt-1.5 w-full rounded-lg border border-ink/15 bg-white px-3 py-2 text-sm outline-none focus:border-ruxin"
+            className="mt-1.5 w-full rounded-md border border-ink/10 bg-white px-3 py-2 text-sm outline-none focus:border-ruxin"
             value={form.role}
             onChange={(event) => setForm((prev) => ({ ...prev, role: event.target.value as 'ADMIN' | 'EDITOR' }))}
           >
@@ -305,15 +331,15 @@ function UsersAdmin({ currentUser }: { currentUser: CmsUser }) {
         <button
           type="submit"
           disabled={pending}
-          className="h-10 rounded-full bg-ruxin px-4 text-sm font-medium text-white disabled:opacity-60"
+          className="h-11 rounded-full bg-ruxin px-5 text-sm font-medium text-white transition-colors hover:bg-ruxin-bright disabled:opacity-60"
         >
           {pending ? 'Creating…' : 'Create user'}
         </button>
       </form>
 
-      <div className="overflow-x-auto rounded-2xl border border-ink/10 bg-white">
+      <div className="overflow-x-auto border border-ink/10 bg-cream">
         <table className="w-full min-w-[32rem] text-left text-sm">
-          <thead className="border-b border-ink/10 text-neutral-500">
+          <thead className="border-b border-ink/10 font-mono text-[10.5px] uppercase tracking-[0.16em] text-mute">
             <tr>
               <th className="px-4 py-3 font-medium">Name</th>
               <th className="px-4 py-3 font-medium">Email</th>
@@ -329,12 +355,12 @@ function UsersAdmin({ currentUser }: { currentUser: CmsUser }) {
                 <td className="px-4 py-3">{item.role}</td>
                 <td className="px-4 py-3 text-right">
                   {item.id === currentUser.id ? (
-                    <span className="text-xs text-neutral-400">You</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-mute">You</span>
                   ) : (
                     <button
                       type="button"
                       onClick={() => void remove(item.id)}
-                      className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-ruxin hover:bg-paper"
+                      className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-ruxin hover:bg-stone"
                       aria-label={`Delete ${item.email}`}
                     >
                       <Trash2 className="size-3.5" />
@@ -371,6 +397,8 @@ function EditorBody({
       return <AboutEditor content={content} onChange={onChange} />
     case 'services':
       return <ServicesEditor content={content} onChange={onChange} />
+    case 'why':
+      return <WhyEditor content={content} onChange={onChange} />
     case 'clients':
       return <ClientsEditor content={content} onChange={onChange} />
     case 'testimonials':

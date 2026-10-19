@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import type { Prisma } from '@prisma/client'
+import { fillSiteContent } from '../content-defaults'
 import { siteContentSchema } from '../content-schema'
 import { prisma } from '../db'
 import { requireAuth, type AppVariables } from '../middleware'
@@ -10,7 +11,9 @@ export const contentRoutes = new Hono<{ Variables: AppVariables }>()
 contentRoutes.get('/', async (c) => {
   const doc = await prisma.siteDocument.findUnique({ where: { id: 'main' } })
   if (!doc) return c.json({ error: 'Content not found.' }, 404)
-  return c.json(doc.content)
+  const filled = fillSiteContent(doc.content)
+  const parsed = siteContentSchema.safeParse(filled)
+  return c.json(parsed.success ? parsed.data : filled)
 })
 
 contentRoutes.put('/', requireAuth, async (c) => {

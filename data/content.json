@@ -1,28 +1,12 @@
 {
   "company": {
     "name": "Ruxin Consulting",
-    "tagline": "Building possibilities. Delivering results.",
-    "email": "hello@ruxinconsulting.com",
-    "phone": "+251 XXX XXX XXX",
-    "location": "Addis Ababa, Ethiopia",
-    "socials": [
-      {
-        "label": "LinkedIn",
-        "href": "https://www.linkedin.com"
-      },
-      {
-        "label": "Instagram",
-        "href": "https://www.instagram.com"
-      },
-      {
-        "label": "Facebook",
-        "href": "https://www.facebook.com"
-      },
-      {
-        "label": "X",
-        "href": "https://x.com"
-      }
-    ]
+    "tagline": "Your partner in every step.",
+    "email": "ruxinconsulting@gmail.com",
+    "phone": "+251 988 987 777",
+    "location": "Bole Rwanda, Fuad Building, Office no. 301, Addis Ababa",
+    "website": "https://www.ruxinconsulting.com",
+    "socials": []
   },
   "navLinks": [
     {
@@ -34,20 +18,12 @@
       "href": "#services"
     },
     {
+      "label": "Why us",
+      "href": "#why"
+    },
+    {
       "label": "Clients",
       "href": "#clients"
-    },
-    {
-      "label": "Team",
-      "href": "#team"
-    },
-    {
-      "label": "Careers",
-      "href": "#careers"
-    },
-    {
-      "label": "Insights",
-      "href": "#insights"
     },
     {
       "label": "Contact",
@@ -55,12 +31,13 @@
     }
   ],
   "hero": {
-    "eyebrow": "Consulting · Logistics · Recruitment · Finance · Legal",
+    "eyebrow": "FDI consulting · Ethiopia",
     "headline": [
-      "Building Possibilities.",
-      "Delivering Results."
+      "Your Partner",
+      "in Every Step!"
     ],
-    "body": "Ruxin Consulting connects strategy, expertise, and execution to help organizations navigate complexity, unlock opportunities, and create lasting impact.",
+    "body": "Ruxin Consulting is an Ethiopia-based FDI consulting firm committed to simplifying the way businesses establish, operate, and grow in Ethiopia.",
+    "image": "/profile/hero.jpg",
     "primaryCta": {
       "label": "Explore Our Services",
       "href": "#services"
@@ -71,209 +48,337 @@
     }
   },
   "about": {
-    "eyebrow": "About Ruxin",
+    "eyebrow": "About Us",
     "headline": [
-      "More than consultants.",
-      "We create connections."
+      "One partner for",
+      "doing business in Ethiopia."
     ],
-    "body": "Ruxin Consulting brings together multidisciplinary expertise to help organizations make better decisions, solve complex challenges, and turn opportunities into measurable results.",
-    "stages": [
-      "Complexity",
-      "Clarity",
-      "Action",
-      "Results"
+    "body": "We assist clients in navigating Ethiopia’s business environment through practical consulting, regulatory coordination, and tailored administrative solutions.",
+    "paragraphs": [
+      "Navigating Ethiopia’s business environment can involve complex administrative procedures, multiple government institutions, and fragmented service systems. These challenges can create additional time, coordination, and resource demands for businesses, particularly international investors unfamiliar with the local environment.",
+      "Ruxin addresses these challenges through an integrated, one-stop service approach, bringing together essential business support services under one roof. From investment consulting and government liaison to logistics and customs clearance, financial services, recruitment, and legal support, we help clients coordinate their business needs through a single, reliable partner."
     ],
-    "stats": [
+    "image": "/profile/about.jpg",
+    "visionImage": "/profile/vision.jpg",
+    "vision": {
+      "title": "Vision",
+      "body": "To become Ethiopia’s trusted one-stop business solutions partner, simplifying the business environment for foreign investors and enabling international enterprises to thrive."
+    },
+    "mission": {
+      "title": "Mission",
+      "body": "To simplify foreign investment operations by integrating essential consulting and support services into a coordinated, client-centered solution that reduces complexity, improves efficiency, and supports sustainable business growth."
+    },
+    "valuesImage": "/profile/values.jpg",
+    "values": [
       {
-        "value": 10,
-        "suffix": "+",
-        "label": "Years of Experience"
+        "title": "Integrity",
+        "body": "We uphold honesty, transparency, and ethical conduct in every professional relationship."
       },
       {
-        "value": 50,
-        "suffix": "+",
-        "label": "Projects Delivered"
+        "title": "Efficiency",
+        "body": "We seek practical ways to simplify complex procedures, and help our clients use their time and resources effectively."
       },
       {
-        "value": 20,
-        "suffix": "+",
-        "label": "Industry Experts"
+        "title": "Client-centricity",
+        "body": "We place our clients at the center of our work, developing responsive and tailored solutions to meet their needs."
       },
       {
-        "value": 15,
-        "suffix": "+",
-        "label": "Markets Connected"
+        "title": "Reliability",
+        "body": "We prioritize consistent communication, careful follow-up, and dependable service delivery."
+      },
+      {
+        "title": "Collaboration",
+        "body": "We connect services and professionals, to provide coordinated solutions and a more seamless client experience."
+      },
+      {
+        "title": "Continuous improvement",
+        "body": "We continuously seek better ways to deliver our services, strengthen our capabilities, and create lasting value for our clients."
       }
-    ]
+    ],
+    "stages": [
+      "Establish",
+      "Operate",
+      "Grow"
+    ],
+    "stats": []
   },
   "services": [
     {
       "id": "consulting",
       "number": "01",
-      "name": "Consulting",
+      "name": "Investment Consultancy",
       "concept": [
-        "Strategy",
-        "Decision",
-        "Growth"
+        "Regulation",
+        "Registration",
+        "License"
       ],
-      "title": "From challenge to clear direction.",
-      "description": "We help leadership teams diagnose what matters, design strategies grounded in evidence, and make confident decisions that compound into growth.",
+      "title": "Guidance through Ethiopia’s investment process.",
+      "description": "We guide foreign investors through Ethiopia’s investment regulations and requirements, providing clarity on applicable procedures and assisting them throughout the business registration and licensing process.",
       "capabilities": [
-        "Business strategy",
-        "Market entry",
-        "Operational excellence",
-        "Transformation"
-      ]
+        "Investment regulations",
+        "Business registration",
+        "Licensing",
+        "Government liaison"
+      ],
+      "image": "/profile/vision.jpg"
     },
     {
       "id": "logistics",
       "number": "02",
-      "name": "Logistics",
+      "name": "Customs Clearing",
       "concept": [
-        "Origin",
-        "Route",
-        "Destination"
+        "Documents",
+        "Clearance",
+        "Delivery"
       ],
-      "title": "Movement, engineered end to end.",
-      "description": "We design and manage supply chains that move goods across borders reliably — from sourcing and freight coordination to customs and last-mile delivery.",
+      "title": "Import and export, without the delay.",
+      "description": "We facilitate customs clearance by coordinating documentation, regulatory requirements, and relevant procedures to help businesses navigate import and export processes more smoothly and reduce unnecessary delays.",
       "capabilities": [
-        "Freight coordination",
-        "Customs & clearance",
-        "Supply chain design",
-        "Warehousing"
-      ]
-    },
-    {
-      "id": "recruitment",
-      "number": "03",
-      "name": "Recruitment",
-      "concept": [
-        "Talent",
-        "Match",
-        "Opportunity"
+        "Documentation",
+        "Import and export",
+        "Regulatory coordination",
+        "Clearance"
       ],
-      "title": "The right people, in the right roles.",
-      "description": "We connect organizations with leaders and specialists who fit both the role and the culture — through rigorous search and a deeply human process.",
-      "capabilities": [
-        "Executive search",
-        "Specialist hiring",
-        "Talent mapping",
-        "Workforce planning"
-      ]
+      "image": "/profile/clients.jpg"
     },
     {
       "id": "finance",
-      "number": "04",
-      "name": "Finance",
+      "number": "03",
+      "name": "Financial Reporting",
       "concept": [
-        "Data",
-        "Insight",
-        "Growth"
+        "Monthly",
+        "Annual",
+        "Compliance"
       ],
-      "title": "Turning numbers into decisions.",
-      "description": "We transform financial data into clear insight — modelling, advisory, and reporting that helps organizations allocate capital and grow with discipline.",
+      "title": "Reports that meet local requirements.",
+      "description": "We assist businesses with the preparation of monthly and annual financial reports in accordance with applicable local regulations, helping clients meet their reporting obligations and maintain proper financial documentation.",
       "capabilities": [
-        "Financial advisory",
-        "Modelling & valuation",
-        "Reporting",
-        "Investment readiness"
-      ]
+        "Monthly reports",
+        "Annual reports",
+        "Local regulations",
+        "Financial documentation"
+      ],
+      "image": "/profile/about.jpg"
+    },
+    {
+      "id": "recruitment",
+      "number": "04",
+      "name": "Recruitment",
+      "concept": [
+        "Source",
+        "Screen",
+        "Hire"
+      ],
+      "title": "Teams that fit the work.",
+      "description": "We connect businesses with qualified talent by supporting candidate sourcing, screening, and recruitment coordination — helping clients build capable teams that align with their operational needs and business goals.",
+      "capabilities": [
+        "Candidate sourcing",
+        "Screening",
+        "Recruitment coordination",
+        "Team building"
+      ],
+      "image": "/profile/hero.jpg"
     },
     {
       "id": "legal",
       "number": "05",
-      "name": "Legal",
+      "name": "Legal Advisory",
       "concept": [
         "Review",
-        "Protection",
+        "Contracts",
         "Confidence"
       ],
-      "title": "Clarity that protects what you build.",
-      "description": "We bring structure to complex legal matters — contracts, compliance, and corporate affairs reviewed with precision so you can move forward with confidence.",
+      "title": "Legal clarity for doing business here.",
+      "description": "We provide legal guidance and document review to help businesses understand relevant legal and regulatory requirements, address contractual matters, and navigate business-related legal procedures with greater confidence.",
       "capabilities": [
-        "Contract review",
-        "Corporate compliance",
-        "Regulatory advisory",
-        "Risk assessment"
-      ]
+        "Legal guidance",
+        "Document review",
+        "Contracts",
+        "Regulatory requirements"
+      ],
+      "image": "/profile/cover.jpg"
     }
   ],
   "clients": [
     {
-      "name": "Northwind Holdings",
-      "mark": "NORTHWIND"
+      "name": "Baijia Ceramic",
+      "mark": "BAIJIA",
+      "logo": "/profile/logo-baijia.jpg"
     },
     {
-      "name": "Axiom Industries",
-      "mark": "AXIOM"
+      "name": "Junaid Group of Companies",
+      "mark": "JUNAID",
+      "logo": "/profile/logo-junaid.jpg"
     },
     {
-      "name": "Meridian Group",
-      "mark": "Meridian"
+      "name": "Fuxing Plastics",
+      "mark": "FUXING",
+      "logo": "/profile/logo-fuxing.png"
     },
     {
-      "name": "Halcyon Partners",
-      "mark": "HALCYON"
+      "name": "Soluxe International",
+      "mark": "SOLUXE",
+      "logo": "/profile/logo-soluxe.jpg"
     },
     {
-      "name": "Vertex Logistics",
-      "mark": "vertex"
+      "name": "Muroo Systems",
+      "mark": "MUROO",
+      "logo": "/profile/logo-muroo.jpg"
     },
     {
-      "name": "Solace Energy",
-      "mark": "SOLACE"
+      "name": "Ipack Packaging",
+      "mark": "IPACK",
+      "logo": "/profile/logo-ipack.jpg"
     },
     {
-      "name": "Atlas Capital",
-      "mark": "Atlas"
+      "name": "China Southern",
+      "mark": "CHINA SOUTHERN",
+      "logo": "/profile/logo-china-southern.jpg"
     },
     {
-      "name": "Kestrel Health",
-      "mark": "KESTREL"
+      "name": "Orison LNG CNG",
+      "mark": "ORISON",
+      "logo": "/profile/logo-orison.jpg"
     },
     {
-      "name": "Orbit Telecom",
-      "mark": "orbit"
+      "name": "DRAZ Group Co., Ltd.",
+      "mark": "DRAZ",
+      "logo": "/profile/logo-draz.png"
     },
     {
-      "name": "Lumen Foods",
-      "mark": "LUMEN"
+      "name": "Fly",
+      "mark": "FLY",
+      "logo": "/profile/logo-fly.png"
     }
   ],
   "testimonials": [
     {
-      "quote": "Ruxin helped us turn a complex challenge into a clear, actionable strategy.",
-      "detail": "Their team connected market insight, financial modelling, and execution planning into one coherent roadmap. We moved faster — and with far more confidence.",
-      "name": "Selam Tesfaye",
-      "role": "Chief Executive Officer",
-      "company": "Northwind Holdings",
-      "mark": "NORTHWIND"
+      "quote": "Ruxin walked us through registration and licensing in Ethiopia and kept every step easy to follow.",
+      "detail": "Investment consultancy",
+      "name": "Baijia Ceramic",
+      "role": "Client",
+      "company": "Baijia Ceramic",
+      "mark": "BAIJIA",
+      "logo": "/profile/logo-baijia.jpg"
     },
     {
-      "quote": "They found leaders we could not have found on our own — and they fit from day one.",
-      "detail": "The search was rigorous, transparent, and remarkably human. Two years on, every placement is still with us and thriving.",
-      "name": "Daniel Okafor",
-      "role": "Head of People",
-      "company": "Axiom Industries",
-      "mark": "AXIOM"
+      "quote": "One local partner for compliance and coordination replaced a lot of back and forth for our team.",
+      "detail": "Ongoing support",
+      "name": "Junaid Group of Companies",
+      "role": "Client",
+      "company": "Junaid Group of Companies",
+      "mark": "JUNAID",
+      "logo": "/profile/logo-junaid.jpg"
     },
     {
-      "quote": "Our cross-border shipments went from unpredictable to precise.",
-      "detail": "Ruxin redesigned our routes and customs process end to end. Lead times dropped and our teams finally trust the schedule.",
-      "name": "Hanna Mekonnen",
-      "role": "Operations Director",
-      "company": "Vertex Logistics",
-      "mark": "vertex"
+      "quote": "Customs paperwork used to stall our shipments. Ruxin now handles the clearance steps with us.",
+      "detail": "Customs clearing",
+      "name": "Fuxing Plastics",
+      "role": "Client",
+      "company": "Fuxing Plastics",
+      "mark": "FUXING",
+      "logo": "/profile/logo-fuxing.png"
     },
     {
-      "quote": "Legal clarity at the speed our business actually moves.",
-      "detail": "Contracts that used to take weeks are reviewed in days, with risks explained in plain language. It changed how we negotiate.",
-      "name": "Marco Rinaldi",
-      "role": "General Counsel",
-      "company": "Atlas Capital",
-      "mark": "Atlas"
+      "quote": "They understand the regulations, and they explain them in a way an international team can act on.",
+      "detail": "Cross-border coordination",
+      "name": "Soluxe International",
+      "role": "Client",
+      "company": "Soluxe International",
+      "mark": "SOLUXE",
+      "logo": "/profile/logo-soluxe.jpg"
+    },
+    {
+      "quote": "Careful with the documents, and easy to reach when a deadline is close.",
+      "detail": "Reliable follow-through",
+      "name": "China Southern",
+      "role": "Client",
+      "company": "China Southern",
+      "mark": "CHINA SOUTHERN",
+      "logo": "/profile/logo-china-southern.jpg"
+    },
+    {
+      "quote": "From setup through ongoing reporting, Ruxin has been a steady partner in Addis Ababa.",
+      "detail": "End-to-end support",
+      "name": "DRAZ Group Co., Ltd.",
+      "role": "Client",
+      "company": "DRAZ Group Co., Ltd.",
+      "mark": "DRAZ",
+      "logo": "/profile/logo-draz.png"
+    },
+    {
+      "quote": "Our monthly and annual reports are prepared to the standard local authorities expect.",
+      "detail": "Financial reporting",
+      "name": "Orison LNG CNG",
+      "role": "Client",
+      "company": "Orison LNG CNG",
+      "mark": "ORISON",
+      "logo": "/profile/logo-orison.jpg"
+    },
+    {
+      "quote": "Recruitment support helped us hire people who already understood the work on the ground.",
+      "detail": "Recruitment",
+      "name": "Ipack Packaging",
+      "role": "Client",
+      "company": "Ipack Packaging",
+      "mark": "IPACK",
+      "logo": "/profile/logo-ipack.jpg"
+    },
+    {
+      "quote": "Contract review gave us a clear picture before we committed to local partners.",
+      "detail": "Legal advisory",
+      "name": "Muroo Systems",
+      "role": "Client",
+      "company": "Muroo Systems",
+      "mark": "MUROO",
+      "logo": "/profile/logo-muroo.jpg"
+    },
+    {
+      "quote": "A practical team. They tell you the next step, then they follow through.",
+      "detail": "Client partnership",
+      "name": "Fly",
+      "role": "Client",
+      "company": "Fly",
+      "mark": "FLY",
+      "logo": "/profile/logo-fly.png"
     }
   ],
+  "whyChoose": {
+    "eyebrow": "Why choose us",
+    "headline": [
+      "A local partner",
+      "for the whole journey."
+    ],
+    "body": "From investment registration to ongoing compliance, we support you at every stage of doing business in Ethiopia.",
+    "image": "/profile/clients.jpg",
+    "items": [
+      {
+        "title": "Local expertise",
+        "body": "In-depth understanding of Ethiopia’s business environment, regulatory requirements, and administrative procedures.",
+        "image": "/profile/why-local.jpg"
+      },
+      {
+        "title": "End-to-end support",
+        "body": "From investment registration to ongoing compliance, we support you at every stage of your business journey.",
+        "image": "/profile/why-support.jpg"
+      },
+      {
+        "title": "Integrated service",
+        "body": "Access multiple complementary business services through one trusted partner for a seamless experience.",
+        "image": "/profile/why-integrated.jpg"
+      },
+      {
+        "title": "Reliability",
+        "body": "We deliver professional, transparent, and timely services built on trust and accountability.",
+        "image": "/profile/why-reliability.jpg"
+      },
+      {
+        "title": "Cross-cultural communication",
+        "body": "With a multilingual team, we connect international investors with the local market through effective communication and coordination.",
+        "image": "/profile/why-culture.jpg"
+      }
+    ]
+  },
   "team": [
     {
       "name": "Yonas Alemu",
@@ -487,12 +592,11 @@
     }
   ],
   "assistant": {
-    "welcome": "Hello, I'm Ruxin Assistant. How can I help you today?",
+    "welcome": "Hello, I'm Ruxin Assistant. How can I help you set up or grow in Ethiopia?",
     "suggestions": [
       "Tell me about your services",
-      "I need consulting support",
-      "I'm interested in logistics",
-      "I'm looking for a job",
+      "I need investment consultancy",
+      "Help with customs clearing",
       "How can I contact Ruxin?"
     ]
   }

@@ -75,10 +75,10 @@ function ToastCard({ item, onDismiss }: { item: ToastItem; onDismiss: (id: strin
   const Icon = item.tone === 'success' ? CheckCircle2 : item.tone === 'error' ? CircleAlert : Info
   const toneClass =
     item.tone === 'success'
-      ? 'border-emerald-200 bg-white text-ink'
+      ? 'border-ink/10 bg-cream text-ink'
       : item.tone === 'error'
-        ? 'border-ruxin/25 bg-white text-ink'
-        : 'border-ink/10 bg-white text-ink'
+        ? 'border-ruxin/30 bg-cream text-ink'
+        : 'border-ink/10 bg-cream text-ink'
 
   const iconClass =
     item.tone === 'success' ? 'text-emerald-600' : item.tone === 'error' ? 'text-ruxin' : 'text-neutral-500'
@@ -86,14 +86,14 @@ function ToastCard({ item, onDismiss }: { item: ToastItem; onDismiss: (id: strin
   return (
     <div
       role="status"
-      className={`pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-2xl border px-4 py-3 shadow-lg shadow-ink/10 animate-toast-in ${toneClass}`}
+      className={`pointer-events-auto flex w-full max-w-sm items-start gap-3 border px-4 py-3 shadow-lg shadow-ink/10 animate-toast-in ${toneClass}`}
     >
       <Icon className={`mt-0.5 size-4 shrink-0 ${iconClass}`} aria-hidden />
       <p className="flex-1 text-sm leading-snug">{item.message}</p>
       <button
         type="button"
         onClick={() => onDismiss(item.id)}
-        className="rounded-lg p-1 text-neutral-400 transition-colors hover:bg-paper hover:text-ink"
+        className="rounded-md p-1 text-mute transition-colors hover:bg-stone hover:text-ink"
         aria-label="Dismiss notification"
       >
         <X className="size-3.5" />

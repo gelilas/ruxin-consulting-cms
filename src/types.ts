@@ -16,6 +16,7 @@ export type SiteContent = {
     email: string
     phone: string
     location: string
+    website: string
     socials: Link[]
   }
   navLinks: Link[]
@@ -23,6 +24,7 @@ export type SiteContent = {
     eyebrow: string
     headline: string[]
     body: string
+    image: string
     primaryCta: Link
     secondaryCta: Link
   }
@@ -30,6 +32,13 @@ export type SiteContent = {
     eyebrow: string
     headline: string[]
     body: string
+    paragraphs: string[]
+    image: string
+    visionImage: string
+    vision: { title: string; body: string }
+    mission: { title: string; body: string }
+    valuesImage: string
+    values: { title: string; body: string }[]
     stages: string[]
     stats: { value: number; suffix: string; label: string }[]
   }
@@ -41,6 +50,7 @@ export type SiteContent = {
     title: string
     description: string
     capabilities: string[]
+    image: string
   }[]
   clients: { name: string; mark: string; logo?: string }[]
   testimonials: {
@@ -50,7 +60,15 @@ export type SiteContent = {
     role: string
     company: string
     mark: string
+    logo: string
   }[]
+  whyChoose: {
+    eyebrow: string
+    headline: string[]
+    body: string
+    image: string
+    items: { title: string; body: string; image: string }[]
+  }
   team: { name: string; role: string; bio: string; image: string; linkedin: string }[]
   careers: {
     headline: string
@@ -87,6 +105,7 @@ export const sections = [
   ['hero', 'Hero'],
   ['about', 'About'],
   ['services', 'Services'],
+  ['why', 'Why us'],
   ['clients', 'Clients'],
   ['testimonials', 'Testimonials'],
   ['team', 'Team'],

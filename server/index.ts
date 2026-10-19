@@ -9,6 +9,7 @@ import { openApiDocument } from './openapi'
 import { authRoutes } from './routes/auth'
 import { contentRoutes } from './routes/content'
 import { pagesRoutes } from './routes/pages'
+import { uploadRoutes } from './routes/uploads'
 import { usersRoutes } from './routes/users'
 import type { AppVariables } from './middleware'
 
@@ -43,6 +44,7 @@ app.get('/api/health', (c) => c.json({ ok: true }))
 app.get('/api/openapi.json', (c) => c.json(openApiDocument))
 app.get('/api/docs', swaggerUI({ url: '/api/openapi.json' }))
 
+app.route('/', uploadRoutes)
 app.route('/api', authRoutes)
 app.route('/api/content', contentRoutes)
 app.route('/api/users', usersRoutes)
