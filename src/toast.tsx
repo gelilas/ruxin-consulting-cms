@@ -81,7 +81,7 @@ function ToastCard({ item, onDismiss }: { item: ToastItem; onDismiss: (id: strin
         : 'border-ink/10 bg-cream text-ink'
 
   const iconClass =
-    item.tone === 'success' ? 'text-emerald-600' : item.tone === 'error' ? 'text-ruxin' : 'text-neutral-500'
+    item.tone === 'success' ? 'text-emerald-700' : item.tone === 'error' ? 'text-wine' : 'text-mute'
 
   return (
     <div
