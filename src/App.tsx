@@ -360,7 +360,7 @@ function UsersAdmin({ currentUser }: { currentUser: CmsUser }) {
                     <button
                       type="button"
                       onClick={() => void remove(item.id)}
-                      className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-ruxin hover:bg-stone"
+                      className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-wine hover:bg-stone"
                       aria-label={`Delete ${item.email}`}
                     >
                       <Trash2 className="size-3.5" />

@@ -13,7 +13,7 @@ export function Logo({ light = false, mark = 'red' }: { light?: boolean; mark?: 
         <span className={`size-2 rounded-full ${mark === 'white' ? 'bg-white' : 'bg-ruxin'}`} />
       </span>
       <span className="flex flex-col leading-none">
-        <span className={`text-[15px] font-bold tracking-[0.18em] ${light ? 'text-white' : 'text-ink'}`}>RUXIN</span>
+        <span className={`font-heading text-[15px] font-bold tracking-[0.18em] ${light ? 'text-white' : 'text-ink'}`}>RUXIN</span>
         <span className={`mt-1 font-mono text-[8px] tracking-[0.42em] ${light ? 'text-white/70' : 'text-ink/45'}`}>CONSULTING</span>
       </span>
     </span>
@@ -186,7 +186,7 @@ function IconButton({
       type="button"
       aria-label={label}
       onClick={onClick}
-      className={`flex size-8 items-center justify-center rounded-full border border-ink/10 text-mute transition-colors hover:text-ink ${danger ? 'hover:border-ruxin hover:text-ruxin' : ''}`}
+      className={`flex size-8 items-center justify-center rounded-full border border-ink/10 text-mute transition-colors hover:text-ink ${danger ? 'hover:border-wine hover:text-wine' : ''}`}
     >
       {icon}
     </button>

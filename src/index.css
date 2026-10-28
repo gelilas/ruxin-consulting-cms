@@ -1,17 +1,19 @@
-@import '@fontsource-variable/geist';
-@import '@fontsource-variable/geist-mono';
+@import '@fontsource-variable/inter-tight';
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
-  --color-ruxin: #b0161e;
-  --color-ruxin-bright: #8b1116;
-  --color-ink: #1a1214;
-  --color-paper: #f7f4f2;
-  --color-cream: #f3eeeb;
-  --color-stone: #efe6e3;
-  --color-mute: #8a7b78;
+  --font-sans: 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
+  --color-vanilla: #f0ede8;
+  --color-ruxin: #ab261c;
+  --color-wine: #820710;
+  --color-ruxin-bright: #820710;
+  --color-ink: #1c1210;
+  --color-paper: #f0ede8;
+  --color-cream: #f7f5f2;
+  --color-stone: #e6dfd8;
+  --color-mute: #5c514c;
 }
 
 body {
@@ -19,7 +21,14 @@ body {
   font-family: var(--font-sans);
   background: var(--color-paper);
   color: var(--color-ink);
-  font-feature-settings: 'ss01', 'cv11';
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
 button,
@@ -56,7 +65,7 @@ select {
 
 @utility grid-fine-dark {
   background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--color-ink) 6%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--color-ink) 6%, transparent) 1px, transparent 1px);
+    linear-gradient(to right, color-mix(in srgb, var(--color-ink) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-ink) 7%, transparent) 1px, transparent 1px);
   background-size: 64px 64px;
 }
