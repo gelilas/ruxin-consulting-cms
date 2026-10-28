@@ -16,6 +16,7 @@ export type SiteContent = {
     email: string
     phone: string
     location: string
+    mapEmbedUrl: string
     website: string
     socials: Link[]
   }
@@ -69,6 +70,18 @@ export type SiteContent = {
     image: string
     items: { title: string; body: string; image: string }[]
   }
+  investmentIntelligence: {
+    eyebrow: string
+    headline: string[]
+    body: string
+    image: string
+    imageAlt: string
+    ctaLabel: string
+    ctaHref: string
+    frameworkLabel: string
+    frameworkBody: string
+    lenses: { label: string; body: string }[]
+  }
   team: { name: string; role: string; bio: string; image: string; linkedin: string }[]
   careers: {
     headline: string
@@ -99,6 +112,30 @@ export type SiteContent = {
   assistant: { welcome: string; suggestions: string[] }
 }
 
+export type AnalyticsBucket = { label: string; count: number }
+
+export type AnalyticsSummary = {
+  range: { from: string; to: string }
+  totals: {
+    visitors: number
+    visits: number
+    pageViews: number
+    averageEngagementSeconds: number | null
+    contactActions: number
+    contactFormStarts: number
+    contactFormSubmissions: number
+  }
+  locations: AnalyticsBucket[]
+  cities: AnalyticsBucket[]
+  sections: AnalyticsBucket[]
+  services: { label: string; views: number; interactions: number }[]
+  sources: AnalyticsBucket[]
+  devices: AnalyticsBucket[]
+  actions: AnalyticsBucket[]
+  dailyPageViews: AnalyticsBucket[]
+  topPaths: AnalyticsBucket[]
+}
+
 export const sections = [
   ['company', 'Company'],
   ['navigation', 'Navigation'],
@@ -106,12 +143,14 @@ export const sections = [
   ['about', 'About'],
   ['services', 'Services'],
   ['why', 'Why us'],
+  ['investment', 'Investment intelligence'],
+  ['analytics', 'Analytics'],
   ['clients', 'Clients'],
   ['testimonials', 'Testimonials'],
   ['team', 'Team'],
   ['careers', 'Careers'],
   ['insights', 'Insights'],
-  ['assistant', 'Assistant'],
+  ['assistant', 'Assistant (paused)'],
 ] as const
 
 export type SectionId = (typeof sections)[number][0]

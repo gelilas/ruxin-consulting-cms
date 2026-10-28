@@ -17,6 +17,7 @@ export const siteContentSchema = z.object({
     email: z.string(),
     phone: z.string(),
     location: z.string(),
+    mapEmbedUrl: z.string(),
     website: z.string(),
     socials: z.array(linkSchema),
   }),
@@ -92,6 +93,23 @@ export const siteContentSchema = z.object({
       }),
     ),
   }),
+  investmentIntelligence: z.object({
+    eyebrow: z.string(),
+    headline: z.array(z.string()),
+    body: z.string(),
+    image: z.string(),
+    imageAlt: z.string(),
+    ctaLabel: z.string(),
+    ctaHref: z.string(),
+    frameworkLabel: z.string(),
+    frameworkBody: z.string(),
+    lenses: z.array(
+      z.object({
+        label: z.string(),
+        body: z.string(),
+      }),
+    ),
+  }),
   team: z.array(
     z.object({
       name: z.string(),
@@ -146,6 +164,7 @@ export const CONTENT_SECTIONS = [
   'clients',
   'testimonials',
   'whyChoose',
+  'investmentIntelligence',
   'team',
   'careers',
   'insightCategories',

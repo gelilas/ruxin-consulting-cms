@@ -1,5 +1,6 @@
 import { ExternalLink, LogOut, Save, Trash2 } from 'lucide-react'
 import { useEffect, useState, type FormEvent } from 'react'
+import { AnalyticsDashboard } from './analytics'
 import { api } from './api'
 import {
   AboutEditor,
@@ -10,6 +11,7 @@ import {
   CompanyEditor,
   HeroEditor,
   InsightsEditor,
+  InvestmentIntelligenceEditor,
   NavigationEditor,
   ServicesEditor,
   TeamEditor,
@@ -129,6 +131,7 @@ function Editor({
 
   const isAdmin = user.role === 'ADMIN'
   const isUsers = section === 'users'
+  const isAnalytics = section === 'analytics'
 
   const handleApiError = (err: unknown, fallback: string) => {
     const message = err instanceof Error ? err.message : fallback
@@ -139,12 +142,12 @@ function Editor({
   }
 
   useEffect(() => {
-    if (isUsers) return
+    if (isUsers || isAnalytics) return
     api
       .content()
       .then(setContent)
       .catch((err: Error) => toast.error(err.message || 'Could not load content.'))
-  }, [isUsers, toast])
+  }, [isUsers, isAnalytics, toast])
 
   const update = (next: SiteContent) => {
     setContent(next)
@@ -205,7 +208,7 @@ function Editor({
               <LogOut className="size-3.5" />
               <span className="hidden sm:inline">Sign out</span>
             </button>
-            {!isUsers ? (
+            {!isUsers && !isAnalytics ? (
               <button
                 type="button"
                 onClick={save}
@@ -247,6 +250,8 @@ function Editor({
         </header>
         {isUsers ? (
           <UsersAdmin currentUser={user} />
+        ) : isAnalytics ? (
+          <AnalyticsDashboard />
         ) : !content ? (
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute">Loading content</p>
         ) : (
@@ -399,6 +404,8 @@ function EditorBody({
       return <ServicesEditor content={content} onChange={onChange} />
     case 'why':
       return <WhyEditor content={content} onChange={onChange} />
+    case 'investment':
+      return <InvestmentIntelligenceEditor content={content} onChange={onChange} />
     case 'clients':
       return <ClientsEditor content={content} onChange={onChange} />
     case 'testimonials':

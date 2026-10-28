@@ -11,6 +11,7 @@ export const openApiDocument = {
     { name: 'Health' },
     { name: 'Auth' },
     { name: 'Content' },
+    { name: 'Analytics' },
     { name: 'Users' },
     { name: 'Pages' },
   ],
@@ -127,6 +128,19 @@ export const openApiDocument = {
         description: 'Full marketing site JSON (SiteContent shape)',
         additionalProperties: true,
       },
+      AnalyticsEvent: {
+        type: 'object',
+        required: ['name', 'path'],
+        properties: {
+          name: { type: 'string', example: 'service_viewed' },
+          path: { type: 'string', example: '/' },
+          section: { type: 'string', nullable: true },
+          service: { type: 'string', nullable: true },
+          visitorId: { type: 'string', nullable: true, description: 'Anonymous browser identifier; the API stores only a hash.' },
+          referrer: { type: 'string', nullable: true },
+          value: { type: 'integer', nullable: true, description: 'Optional duration in seconds for engagement events.' },
+        },
+      },
     },
   },
   paths: {
@@ -213,6 +227,37 @@ export const openApiDocument = {
         },
       },
     },
+    '/api/analytics/events': {
+      post: {
+        tags: ['Analytics'],
+        summary: 'Record an anonymous website event',
+        requestBody: {
+          required: true,
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/AnalyticsEvent' } } },
+        },
+        responses: {
+          '200': { description: 'Recorded' },
+          '400': { description: 'Invalid event' },
+          '429': { description: 'Rate limited' },
+        },
+      },
+    },
+    '/api/analytics/summary': {
+      get: {
+        tags: ['Analytics'],
+        summary: 'Get an aggregated analytics summary',
+        security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'from', in: 'query', required: false, schema: { type: 'string', format: 'date' } },
+          { name: 'to', in: 'query', required: false, schema: { type: 'string', format: 'date' } },
+        ],
+        responses: {
+          '200': { description: 'Aggregated analytics summary' },
+          '400': { description: 'Invalid date range' },
+          '401': { description: 'Unauthorized' },
+        },
+      },
+    },
     '/api/content': {
       get: {
         tags: ['Content'],
@@ -267,6 +312,8 @@ export const openApiDocument = {
                 'services',
                 'clients',
                 'testimonials',
+                'whyChoose',
+                'investmentIntelligence',
                 'team',
                 'careers',
                 'insightCategories',

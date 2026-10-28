@@ -258,6 +258,23 @@ npx prisma migrate dev --name init
 npx prisma db seed
 ```
 
+## 6. Website analytics
+
+The CMS now includes a privacy-conscious first-party analytics layer. The marketing site asks visitors for consent, then sends anonymous events to the CMS. The API stores only a one-way visitor hash plus aggregate-friendly fields such as event name, section, service, referrer hostname, approximate country/city headers, device, and engagement seconds. It never stores contact names, email addresses, phone numbers, or messages in analytics.
+
+Endpoints:
+
+- `POST /api/analytics/events` — public, rate-limited event intake.
+- `GET /api/analytics/summary?from=YYYY-MM-DD&to=YYYY-MM-DD` — authenticated aggregated dashboard data.
+
+After pulling the code, create the table and regenerate Prisma Client with:
+
+```bash
+npm run db:push
+```
+
+The CMS admin sidebar then includes **Analytics**, with visitors, visits, page views, locations, cities when available, sections reached, service interest, traffic sources, device mix, contact actions, form activity, and engagement time. Successful form validation is not a confirmed lead until contact delivery/storage is connected.
+
 Add to `package.json`:
 
 ```json

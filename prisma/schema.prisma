@@ -51,3 +51,23 @@ model Page {
   updatedAt   DateTime @updatedAt
   createdById String?
 }
+
+/// Anonymous website analytics events. Never store contact-form fields here.
+model AnalyticsEvent {
+  id           String   @id @default(cuid())
+  name         String
+  path         String
+  section      String?
+  service      String?
+  referrer     String?
+  country      String?
+  city         String?
+  device       String?
+  visitorHash  String?
+  value        Int?
+  createdAt    DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([name, createdAt])
+  @@index([visitorHash, createdAt])
+}

@@ -1,4 +1,4 @@
-import type { CmsUser, SiteContent } from './types'
+import type { AnalyticsSummary, CmsUser, SiteContent } from './types'
 
 const TOKEN_KEY = 'cms_jwt'
 
@@ -90,6 +90,8 @@ export const api = {
     }),
   save: (content: SiteContent) =>
     request('/api/content', { method: 'PUT', body: JSON.stringify(content) }),
+  analytics: (range: { from: string; to: string }) =>
+    request<AnalyticsSummary>(`/api/analytics/summary?from=${encodeURIComponent(range.from)}&to=${encodeURIComponent(range.to)}`),
   upload: async (file: File) => {
     const body = new FormData()
     body.append('file', file)
