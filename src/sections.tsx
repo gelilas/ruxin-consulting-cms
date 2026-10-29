@@ -22,6 +22,12 @@ export function CompanyEditor({ content, onChange }: { content: SiteContent; onC
         <Field label="Phone" value={company.phone} onChange={(phone) => set({ phone })} />
       </div>
       <Field label="Location" value={company.location} onChange={(location) => set({ location })} />
+      <Field
+        label="Map embed URL"
+        value={company.mapEmbedUrl}
+        onChange={(mapEmbedUrl) => set({ mapEmbedUrl })}
+        hint="Google Maps embed URL used in the contact section."
+      />
       <Field label="Website" value={company.website} onChange={(website) => set({ website })} hint="Shown on the contact section. Include https://" />
       <div className="grid gap-3">
         {company.socials.map((social, index) => (
@@ -253,6 +259,46 @@ export function WhyEditor({ content, onChange }: { content: SiteContent; onChang
         </Card>
       ))}
       <AddButton label="Add reason" onClick={() => set({ items: [...why.items, { title: 'New reason', body: '', image: '/profile/why-local.jpg' }] })} />
+    </div>
+  )
+}
+
+export function InvestmentIntelligenceEditor({ content, onChange }: { content: SiteContent; onChange: (content: SiteContent) => void }) {
+  const section = content.investmentIntelligence
+  const set = (patch: Partial<SiteContent['investmentIntelligence']>) =>
+    onChange({ ...content, investmentIntelligence: { ...section, ...patch } })
+
+  return (
+    <div className="grid gap-4">
+      <p className="text-sm leading-relaxed text-ink/60">
+        This controls the investment-focused section on the public website. Keep the copy practical and avoid promising a live analytics product unless one has been built.
+      </p>
+      <Field label="Eyebrow" value={section.eyebrow} onChange={(eyebrow) => set({ eyebrow })} />
+      <Lines label="Headline" value={section.headline} onChange={(headline) => set({ headline })} />
+      <Field label="Body" value={section.body} onChange={(body) => set({ body })} multiline />
+      <ImageField label="Image" value={section.image} onChange={(image) => set({ image })} />
+      <Field label="Image alt text" value={section.imageAlt} onChange={(imageAlt) => set({ imageAlt })} />
+      <div className="grid gap-4 md:grid-cols-2">
+        <Field label="Button label" value={section.ctaLabel} onChange={(ctaLabel) => set({ ctaLabel })} />
+        <Field label="Button link" value={section.ctaHref} onChange={(ctaHref) => set({ ctaHref })} />
+        <Field label="Framework label" value={section.frameworkLabel} onChange={(frameworkLabel) => set({ frameworkLabel })} />
+        <Field label="Framework text" value={section.frameworkBody} onChange={(frameworkBody) => set({ frameworkBody })} multiline />
+      </div>
+      <div className="grid gap-3">
+        {section.lenses.map((lens, index) => (
+          <Card
+            key={index}
+            title={lens.label || 'Decision lens'}
+            onRemove={() => set({ lenses: section.lenses.filter((_, i) => i !== index) })}
+            onUp={() => set({ lenses: move(section.lenses, index, -1) })}
+            onDown={() => set({ lenses: move(section.lenses, index, 1) })}
+          >
+            <Field label="Label" value={lens.label} onChange={(label) => set({ lenses: section.lenses.map((item, i) => (i === index ? { ...item, label } : item)) })} />
+            <Field label="Body" value={lens.body} onChange={(body) => set({ lenses: section.lenses.map((item, i) => (i === index ? { ...item, body } : item)) })} multiline />
+          </Card>
+        ))}
+        <AddButton label="Add decision lens" onClick={() => set({ lenses: [...section.lenses, { label: 'New lens', body: '' }] })} />
+      </div>
     </div>
   )
 }

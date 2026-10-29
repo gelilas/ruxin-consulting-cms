@@ -7,6 +7,7 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { openApiDocument } from './openapi'
 import { authRoutes } from './routes/auth'
+import { analyticsRoutes } from './routes/analytics'
 import { contentRoutes } from './routes/content'
 import { pagesRoutes } from './routes/pages'
 import { uploadRoutes } from './routes/uploads'
@@ -46,6 +47,7 @@ app.get('/api/docs', swaggerUI({ url: '/api/openapi.json' }))
 
 app.route('/', uploadRoutes)
 app.route('/api', authRoutes)
+app.route('/api/analytics', analyticsRoutes)
 app.route('/api/content', contentRoutes)
 app.route('/api/users', usersRoutes)
 app.route('/api/pages', pagesRoutes)

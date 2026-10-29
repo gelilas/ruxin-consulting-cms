@@ -1,6 +1,7 @@
 import { ChevronDown, ChevronUp, Plus, Trash2 } from 'lucide-react'
 import { useState, type ReactNode } from 'react'
 import { api } from './api'
+import { useCmsCopy } from './i18n'
 
 const control =
   'mt-1.5 w-full rounded-md border border-ink/10 bg-white px-3 py-2 text-sm outline-none transition-colors placeholder:text-mute/70 focus:border-ruxin'
@@ -33,10 +34,11 @@ export function Field({
   multiline?: boolean
   hint?: string
 }) {
+  const copy = useCmsCopy()
   return (
     <label className="block text-sm">
-      <span className="font-medium">{label}</span>
-      {hint ? <span className="mt-0.5 block text-xs text-mute">{hint}</span> : null}
+      <span className="font-medium">{copy.label(label)}</span>
+      {hint ? <span className="mt-0.5 block text-xs text-mute">{copy.hint(hint)}</span> : null}
       {multiline ? (
         <textarea className={`${control} min-h-28`} value={value} onChange={(event) => onChange(event.target.value)} />
       ) : (
@@ -63,6 +65,7 @@ export function ImageField({
   value: string
   onChange: (value: string) => void
 }) {
+  const copy = useCmsCopy()
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
 
@@ -81,18 +84,18 @@ export function ImageField({
 
   return (
     <div className="block text-sm">
-      <span className="font-medium">{label}</span>
+      <span className="font-medium">{copy.label(label)}</span>
       <div className="mt-1.5 flex items-center gap-4">
         <div className="flex size-20 shrink-0 items-center justify-center overflow-hidden border border-ink/10 bg-white">
           {value ? (
             <img src={previewSrc(value)} alt="" className="size-full object-contain" />
           ) : (
-            <span className="px-2 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-mute">No image</span>
+            <span className="px-2 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-mute">{copy.uiLabels['No image'] || 'No image'}</span>
           )}
         </div>
         <div className="flex flex-col items-start gap-2">
           <label className="inline-flex h-10 cursor-pointer items-center rounded-full border border-ruxin px-4 text-sm font-medium text-ruxin transition-colors hover:bg-ruxin hover:text-white">
-            {pending ? 'Uploading…' : value ? 'Replace image' : 'Upload image'}
+            {pending ? copy.uiLabels['Uploading…'] : value ? copy.uiLabels['Replace image'] : copy.uiLabels['Upload image']}
             <input
               type="file"
               accept="image/jpeg,image/png,image/webp,image/gif"
@@ -107,7 +110,7 @@ export function ImageField({
           </label>
           {value ? (
             <button type="button" onClick={() => onChange('')} className="text-xs text-mute transition-colors hover:text-ruxin">
-              Remove
+              {copy.uiLabels.Remove}
             </button>
           ) : null}
         </div>
@@ -128,10 +131,11 @@ export function Lines({
   onChange: (value: string[]) => void
   hint?: string
 }) {
+  const copy = useCmsCopy()
   return (
     <label className="block text-sm">
-      <span className="font-medium">{label}</span>
-      <span className="mt-0.5 block text-xs text-mute">{hint}</span>
+      <span className="font-medium">{copy.label(label)}</span>
+      <span className="mt-0.5 block text-xs text-mute">{copy.hint(hint)}</span>
       <textarea
         className={`${control} min-h-28`}
         value={value.join('\n')}
@@ -155,10 +159,11 @@ export function Card({
   onUp?: () => void
   onDown?: () => void
 }) {
+  const copy = useCmsCopy()
   return (
     <article className="border border-ink/10 bg-cream p-5">
       <div className="mb-4 flex items-center justify-between gap-3">
-        <h3 className="truncate text-sm font-semibold">{title || 'Untitled'}</h3>
+        <h3 className="truncate text-sm font-semibold">{title || copy.uiLabels.Untitled}</h3>
         <div className="flex shrink-0 items-center gap-1">
           {onUp ? <IconButton label="Move up" onClick={onUp} icon={<ChevronUp className="size-4" />} /> : null}
           {onDown ? <IconButton label="Move down" onClick={onDown} icon={<ChevronDown className="size-4" />} /> : null}
@@ -181,10 +186,11 @@ function IconButton({
   icon: ReactNode
   danger?: boolean
 }) {
+  const copy = useCmsCopy()
   return (
     <button
       type="button"
-      aria-label={label}
+      aria-label={copy.uiLabels[label] || label}
       onClick={onClick}
       className={`flex size-8 items-center justify-center rounded-full border border-ink/10 text-mute transition-colors hover:text-ink ${danger ? 'hover:border-wine hover:text-wine' : ''}`}
     >
@@ -194,6 +200,7 @@ function IconButton({
 }
 
 export function AddButton({ label, onClick }: { label: string; onClick: () => void }) {
+  const copy = useCmsCopy()
   return (
     <button
       type="button"
@@ -201,7 +208,7 @@ export function AddButton({ label, onClick }: { label: string; onClick: () => vo
       className="inline-flex items-center gap-2 rounded-full border border-ruxin px-4 py-2 text-sm font-medium text-ruxin transition-colors hover:bg-ruxin hover:text-white"
     >
       <Plus className="size-4" />
-      {label}
+      {copy.uiLabels[label] || label}
     </button>
   )
 }

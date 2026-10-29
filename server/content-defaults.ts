@@ -21,6 +21,26 @@ function blankLike(sample: unknown): unknown {
   return sample
 }
 
+function migrateLegacyContent(value: unknown): unknown {
+  if (!isPlainObject(value)) return value
+
+  const source = structuredClone(value) as Record<string, unknown>
+  const about = isPlainObject(source.about) ? source.about : null
+  const whyChoose = isPlainObject(source.whyChoose) ? source.whyChoose : null
+
+  if (about?.image === '/profile/about.jpg') about.image = '/profile/about-meeting.jpg'
+  if (whyChoose?.image === '/profile/clients.jpg') whyChoose.image = '/profile/why-banner.jpg'
+
+  if (Array.isArray(source.navLinks) && !source.navLinks.some((link) => isPlainObject(link) && link.href === '#team')) {
+    const clientsIndex = source.navLinks.findIndex((link) => isPlainObject(link) && link.href === '#clients')
+    const teamLink = { label: 'Our team', href: '#team' }
+    if (clientsIndex === -1) source.navLinks.push(teamLink)
+    else source.navLinks.splice(clientsIndex, 0, teamLink)
+  }
+
+  return source
+}
+
 /** Fill gaps from the website default document without replacing fields that are already set. */
 export function fillSiteContent(value: unknown, fallback: unknown = defaultSiteContent): unknown {
   if (Array.isArray(fallback)) {
@@ -32,7 +52,8 @@ export function fillSiteContent(value: unknown, fallback: unknown = defaultSiteC
   }
 
   if (isPlainObject(fallback)) {
-    const source = isPlainObject(value) ? value : {}
+    const migrated = migrateLegacyContent(value)
+    const source = isPlainObject(migrated) ? migrated : {}
     const result: Record<string, unknown> = {}
     for (const key of Object.keys(fallback)) {
       if (!(key in source) || source[key] === undefined || source[key] === null) {
