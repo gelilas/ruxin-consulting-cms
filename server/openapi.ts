@@ -262,6 +262,9 @@ export const openApiDocument = {
       get: {
         tags: ['Content'],
         summary: 'Get public site content',
+        parameters: [
+          { name: 'lang', in: 'query', required: false, description: 'Content language', schema: { type: 'string', enum: ['en', 'am', 'zh'], default: 'en' } },
+        ],
         responses: {
           '200': {
             description: 'Site content JSON',
@@ -274,6 +277,9 @@ export const openApiDocument = {
         tags: ['Content'],
         summary: 'Replace full site content',
         security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'lang', in: 'query', required: false, description: 'Content language to save', schema: { type: 'string', enum: ['en', 'am', 'zh'], default: 'en' } },
+        ],
         requestBody: {
           required: true,
           content: { 'application/json': { schema: { $ref: '#/components/schemas/SiteContent' } } },
@@ -321,6 +327,13 @@ export const openApiDocument = {
                 'assistant',
               ],
             },
+          },
+          {
+            name: 'lang',
+            in: 'query',
+            required: false,
+            description: 'Content language to patch',
+            schema: { type: 'string', enum: ['en', 'am', 'zh'], default: 'en' },
           },
         ],
         requestBody: {

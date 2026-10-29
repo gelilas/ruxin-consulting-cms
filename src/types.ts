@@ -1,6 +1,7 @@
 export type Link = { label: string; href: string }
 
 export type CmsRole = 'ADMIN' | 'EDITOR'
+export type ContentLocale = 'en' | 'am' | 'zh'
 
 export type CmsUser = {
   id: string

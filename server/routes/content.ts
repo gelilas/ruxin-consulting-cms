@@ -2,16 +2,22 @@ import { Hono } from 'hono'
 import type { Prisma } from '@prisma/client'
 import { fillSiteContent } from '../content-defaults'
 import { siteContentSchema } from '../content-schema'
+import { contentLocaleSchema, localizedContent, splitStoredContent, storedContent, type ContentLocale } from '../content-localization'
 import { prisma } from '../db'
 import { requireAuth, type AppVariables } from '../middleware'
 import { contentSectionSchema, parseOrError } from '../validation'
 
 export const contentRoutes = new Hono<{ Variables: AppVariables }>()
 
+function requestedLocale(value: string | undefined): ContentLocale {
+  const parsed = contentLocaleSchema.safeParse(value || 'en')
+  return parsed.success ? parsed.data : 'en'
+}
+
 contentRoutes.get('/', async (c) => {
   const doc = await prisma.siteDocument.findUnique({ where: { id: 'main' } })
   if (!doc) return c.json({ error: 'Content not found.' }, 404)
-  const filled = fillSiteContent(doc.content)
+  const filled = fillSiteContent(localizedContent(doc.content, requestedLocale(c.req.query('lang'))))
   const parsed = siteContentSchema.safeParse(filled)
   return c.json(parsed.success ? parsed.data : filled)
 })
@@ -24,15 +30,21 @@ contentRoutes.put('/', requireAuth, async (c) => {
   }
 
   const user = c.get('user')
+  const locale = requestedLocale(c.req.query('lang'))
+  const existing = await prisma.siteDocument.findUnique({ where: { id: 'main' } })
+  const stored = splitStoredContent(existing?.content)
+  const base = locale === 'en' ? parsed.data : stored.base
+  const locales = { ...stored.locales, ...(locale === 'en' ? {} : { [locale]: parsed.data }) }
+  const documentContent = storedContent(base, locales)
   await prisma.siteDocument.upsert({
     where: { id: 'main' },
     create: {
       id: 'main',
-      content: parsed.data as Prisma.InputJsonValue,
+      content: documentContent as Prisma.InputJsonValue,
       updatedBy: user.id,
     },
     update: {
-      content: parsed.data as Prisma.InputJsonValue,
+      content: documentContent as Prisma.InputJsonValue,
       updatedBy: user.id,
     },
   })
@@ -61,17 +73,21 @@ contentRoutes.patch('/:section', requireAuth, async (c) => {
     return c.json({ error: 'Content not found.' }, 404)
   }
 
-  const current = { ...(doc.content as Record<string, unknown>), [section]: patch }
+  const locale = requestedLocale(c.req.query('lang'))
+  const current = { ...(localizedContent(doc.content, locale) as Record<string, unknown>), [section]: patch }
   const parsed = siteContentSchema.safeParse(current)
   if (!parsed.success) {
     return c.json({ error: 'Updated content failed validation.' }, 400)
   }
 
   const user = c.get('user')
+  const stored = splitStoredContent(doc.content)
+  const base = locale === 'en' ? parsed.data : stored.base
+  const locales = { ...stored.locales, ...(locale === 'en' ? {} : { [locale]: parsed.data }) }
   await prisma.siteDocument.update({
     where: { id: 'main' },
     data: {
-      content: parsed.data as Prisma.InputJsonValue,
+      content: storedContent(base, locales) as Prisma.InputJsonValue,
       updatedBy: user.id,
     },
   })

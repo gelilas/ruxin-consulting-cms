@@ -83,13 +83,13 @@ export const api = {
       setToken(null)
     }
   },
-  content: () =>
-    fetch('/api/content', { headers: authHeaders() }).then(async (response) => {
+  content: (locale = 'en') =>
+    fetch(`/api/content?lang=${encodeURIComponent(locale)}`, { headers: authHeaders() }).then(async (response) => {
       if (!response.ok) throw new ApiError('Could not load content.', response.status)
       return (await response.json()) as SiteContent
     }),
-  save: (content: SiteContent) =>
-    request('/api/content', { method: 'PUT', body: JSON.stringify(content) }),
+  save: (content: SiteContent, locale = 'en') =>
+    request(`/api/content?lang=${encodeURIComponent(locale)}`, { method: 'PUT', body: JSON.stringify(content) }),
   analytics: (range: { from: string; to: string }) =>
     request<AnalyticsSummary>(`/api/analytics/summary?from=${encodeURIComponent(range.from)}&to=${encodeURIComponent(range.to)}`),
   upload: async (file: File) => {
