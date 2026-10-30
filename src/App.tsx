@@ -4,7 +4,7 @@ import { AnalyticsDashboard } from './analytics'
 import { api } from './api'
 import {
   AboutEditor,
-  AssistantEditor,
+  // AssistantEditor, // Chatbot editor paused until the chatbot is re-enabled.
   CareersEditor,
   ClientsEditor,
   WhyEditor,
@@ -50,7 +50,7 @@ export function App() {
   if (user === undefined) {
     return (
       <p className="grid min-h-svh place-items-center bg-paper font-mono text-[11px] uppercase tracking-[0.22em] text-mute">
-        Loading
+        {locale === 'am' ? 'በመጫን ላይ' : locale === 'zh' ? '加载中' : 'Loading'}
       </p>
     )
   }
@@ -72,10 +72,10 @@ function Login({ locale, onLocaleChange, onSuccess }: { locale: ContentLocale; o
     setError('')
     try {
       const result = await api.login(email, password)
-      toast.success(`Welcome back, ${result.user.name}.`)
+      toast.success(copy.welcomeBack.replace('{name}', result.user.name))
       onSuccess(result.user)
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Could not sign in.'
+      const message = err instanceof Error ? err.message : copy.couldNotSignIn
       setError(message)
       toast.error(message)
     } finally {
@@ -147,6 +147,7 @@ function Editor({
   const copy = useCmsCopy()
   const [section, setSection] = useState<NavId>('company')
   const [content, setContent] = useState<SiteContent | null>(null)
+  const [contentLocale, setContentLocale] = useState<ContentLocale | null>(null)
   const [pending, setPending] = useState(false)
   const [dirty, setDirty] = useState(false)
 
@@ -155,8 +156,11 @@ function Editor({
   const isAnalytics = section === 'analytics'
 
   const changeLocale = (next: ContentLocale) => {
+    if (next === locale) return
     if (dirty && !confirm(copy.discardChanges)) return
     setDirty(false)
+    setContent(null)
+    setContentLocale(null)
     onLocaleChange(next)
   }
 
@@ -170,10 +174,22 @@ function Editor({
 
   useEffect(() => {
     if (isUsers || isAnalytics) return
+    let active = true
+    setContent(null)
+    setContentLocale(null)
     api
       .content(locale)
-      .then(setContent)
-      .catch((err: Error) => toast.error(err.message || copy.couldNotLoad))
+      .then((next) => {
+        if (!active) return
+        setContent(next)
+        setContentLocale(locale)
+      })
+      .catch((err: Error) => {
+        if (active) toast.error(err.message || copy.couldNotLoad)
+      })
+    return () => {
+      active = false
+    }
   }, [isUsers, isAnalytics, locale, toast, copy.couldNotLoad])
 
   const update = (next: SiteContent) => {
@@ -197,7 +213,7 @@ function Editor({
 
   const logout = async () => {
     await api.logout().catch(() => undefined)
-    toast.info('Signed out.')
+    toast.info(copy.signedOut)
     onLogout()
   }
 
@@ -291,7 +307,7 @@ function Editor({
           <UsersAdmin currentUser={user} />
         ) : isAnalytics ? (
           <AnalyticsDashboard />
-        ) : !content ? (
+        ) : !content || contentLocale !== locale ? (
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute">{copy.loadingContent}</p>
         ) : (
           <EditorBody section={section as SectionId} content={content} onChange={update} />
@@ -456,7 +472,7 @@ function EditorBody({
       return <CareersEditor content={content} onChange={onChange} />
     case 'insights':
       return <InsightsEditor content={content} onChange={onChange} />
-    case 'assistant':
-      return <AssistantEditor content={content} onChange={onChange} />
+    // case 'assistant':
+    //   return <AssistantEditor content={content} onChange={onChange} />
   }
 }
