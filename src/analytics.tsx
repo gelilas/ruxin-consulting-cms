@@ -4,12 +4,6 @@ import { api } from './api'
 import { useCmsCopy } from './i18n'
 import type { AnalyticsBucket, AnalyticsSummary } from './types'
 
-const ranges = [
-  { label: 'Last 7 days', days: 7 },
-  { label: 'Last 30 days', days: 30 },
-  { label: 'Last 90 days', days: 90 },
-] as const
-
 function dateRange(days: number) {
   const to = new Date()
   const from = new Date(to.getTime() - (days - 1) * 86400000)

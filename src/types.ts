@@ -151,7 +151,7 @@ export const sections = [
   ['team', 'Team'],
   ['careers', 'Careers'],
   ['insights', 'Insights'],
-  ['assistant', 'Assistant (paused)'],
+  // ['assistant', 'Assistant (paused)'], // Chatbot CMS controls paused.
 ] as const
 
 export type SectionId = (typeof sections)[number][0]

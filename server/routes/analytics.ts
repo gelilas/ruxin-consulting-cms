@@ -18,7 +18,7 @@ const eventNames = [
   'engagement',
 ] as const
 
-const eventBodySchema = z
+export const eventBodySchema = z
   .object({
     name: z.enum(eventNames),
     path: z.string().trim().startsWith('/').max(255),
