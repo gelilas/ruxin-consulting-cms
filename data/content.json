@@ -36,7 +36,7 @@
     }
   ],
   "hero": {
-    "eyebrow": "FDI consulting · Ethiopia",
+    "eyebrow": "",
     "headline": [
       "Your Partner",
       "in Every Step!"
@@ -125,7 +125,7 @@
         "Licensing",
         "Government liaison"
       ],
-      "image": "/profile/vision.jpg"
+      "image": "/profile/consulting-team.jpg"
     },
     {
       "id": "logistics",
@@ -144,7 +144,7 @@
         "Regulatory coordination",
         "Clearance"
       ],
-      "image": "/profile/clients.jpg"
+      "image": "/profile/customs-port.jpg"
     },
     {
       "id": "finance",
@@ -163,7 +163,7 @@
         "Local regulations",
         "Financial documentation"
       ],
-      "image": "/profile/about.jpg"
+      "image": "/profile/finance-lead.jpg"
     },
     {
       "id": "recruitment",
@@ -182,7 +182,7 @@
         "Recruitment coordination",
         "Team building"
       ],
-      "image": "/profile/hero.jpg"
+      "image": "/profile/recruitment-team.jpg"
     },
     {
       "id": "legal",
@@ -201,7 +201,7 @@
         "Contracts",
         "Regulatory requirements"
       ],
-      "image": "/profile/cover.jpg"
+      "image": "/profile/legal-advisor.jpg"
     }
   ],
   "clients": [

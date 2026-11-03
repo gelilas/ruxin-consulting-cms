@@ -79,7 +79,7 @@ export function HeroEditor({ content, onChange }: { content: SiteContent; onChan
   const set = (patch: Partial<SiteContent['hero']>) => onChange({ ...content, hero: { ...hero, ...patch } })
   return (
     <div className="grid gap-4">
-      <Field label="Eyebrow" value={hero.eyebrow} onChange={(eyebrow) => set({ eyebrow })} />
+      <Field label="Eyebrow (optional)" value={hero.eyebrow} onChange={(eyebrow) => set({ eyebrow })} hint="Small line above the headline. Leave empty to hide it." />
       <Lines label="Headline" value={hero.headline} onChange={(headline) => set({ headline })} hint="Each line of the headline." />
       <Field label="Body" value={hero.body} onChange={(body) => set({ body })} multiline />
       <ImageField label="Image" value={hero.image} onChange={(image) => set({ image })} />
