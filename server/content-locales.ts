@@ -18,7 +18,7 @@ export const starterLocales: Record<'am' | 'zh', Record<string, unknown>> = {
       { label: 'ያግኙን' },
     ],
     hero: {
-      eyebrow: 'የውጭ ቀጥተኛ ኢንቨስትመንት ምክር · ኢትዮጵያ',
+      eyebrow: '',
       headline: ['የእርስዎ አጋር', 'በእያንዳንዱ ደረጃ።'],
       body: 'Ruxin Consulting በኢትዮጵያ የሚሰራ የውጭ ቀጥተኛ ኢንቨስትመንት ምክር ድርጅት ሲሆን ንግዶች በኢትዮጵያ እንዲቋቋሙ፣ እንዲሰሩ እና እንዲያድጉ ይረዳል።',
       primaryCta: { label: 'አገልግሎቶቻችንን ይመልከቱ' },
@@ -145,7 +145,7 @@ export const starterLocales: Record<'am' | 'zh', Record<string, unknown>> = {
       { label: '联系我们' },
     ],
     hero: {
-      eyebrow: '埃塞俄比亚 · 外商直接投资咨询',
+      eyebrow: '',
       headline: ['您的合作伙伴', '陪伴每一步。'],
       body: 'Ruxin Consulting 是一家总部位于埃塞俄比亚的外商直接投资咨询公司，帮助企业在埃塞俄比亚建立、运营并实现增长。',
       primaryCta: { label: '了解我们的服务' },

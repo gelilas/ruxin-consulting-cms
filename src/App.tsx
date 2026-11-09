@@ -280,8 +280,9 @@ function Editor({
       <div className="md:grid md:grid-cols-[240px_1fr]">
       <aside className="border-b border-ink/10 bg-cream md:sticky md:top-0 md:h-[calc(100svh-5rem)] md:overflow-y-auto md:border-b-0 md:border-r">
         <nav className="flex gap-1 overflow-x-auto px-3 py-3 md:block md:px-3 md:py-5">
+          {/* Investment intelligence is hidden: the public website no longer shows that section. */}
           <p className="mb-2 hidden px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-mute md:block">{copy.pages}</p>
-          {sections.map(([id, label]) => (
+          {sections.filter(([id]) => id !== 'investment').map(([id, label]) => (
             <button key={id} type="button" onClick={() => setSection(id)} className={navClass(section === id)}>
               <span className={`size-1.5 shrink-0 rounded-full ${section === id ? 'bg-ruxin' : 'bg-transparent'}`} aria-hidden="true" />
               {copy.sectionLabels[id] || label}
