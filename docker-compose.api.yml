@@ -1,0 +1,47 @@
+services:
+  api:
+    image: joo21/ruxin-consulting-api:latest
+    env_file: .env
+    environment:
+      API_PORT: 4001
+      DATABASE_URL: "mysql://${DB_USER:-raxin_user}:${DB_PASSWORD:?set DB_PASSWORD in .env}@db:3306/${DB_NAME:-raxin_cms}"
+    ports:
+      - "${API_PORT:-4001}:4001"
+    volumes:
+      - uploads:/app/data/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  api-init:
+    image: joo21/ruxin-consulting-api:latest
+    env_file: .env
+    environment:
+      DATABASE_URL: "mysql://${DB_USER:-raxin_user}:${DB_PASSWORD:?set DB_PASSWORD in .env}@db:3306/${DB_NAME:-raxin_cms}"
+    command: sh -c "npx prisma db push && npx tsx prisma/seed.ts"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?set DB_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: ${DB_NAME:-raxin_cms}
+      MYSQL_USER: ${DB_USER:-raxin_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    volumes:
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  dbdata:
+  uploads:
